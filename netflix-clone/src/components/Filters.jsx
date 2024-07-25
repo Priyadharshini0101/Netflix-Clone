@@ -2,27 +2,25 @@ import React,{useState,useRef,useEffect} from 'react'
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import {caret} from '../assets/index.js'
 import {Template} from '../components/index.js'
+import { useSelector, useDispatch } from 'react-redux'
+import { addLanguage } from '../features/list/languageSlice'
+
 
 function Filters({title,content}) {
   const genreObject = {id:0,name:title}
-  const languageObject =  {
-    iso_639_1: "en",
-    english_name: "English",
-    name: "English"
-  }
+ const lang = useSelector(state => state.language.languages)
   const [genre, setGenre] = useState([]);
   const [currentGenre, setCurrentGenre] = useState(genreObject)
   const [list,setList] = useState([]);
   const [languages,setLanguages] = useState([])
-  const [currentLanguage,setCurrentLanguage] = useState(languageObject);
  
-  const getList = async (genre,content) => { 
+  const getList = async (content) => { 
     try {
 
     const allResults = []; 
     for (let page = 1; page <= 6; page++) {
       const response = await fetch(
-        `https://api.themoviedb.org/3/discover/${content}?page=${page}&sort_by=popularity.desc&api_key=365fae6b1e2fabc371f203e61d7fdbc8&with_genres=${genre.id}&with_original_language=${currentLanguage.iso_639_1}`
+        `https://api.themoviedb.org/3/discover/${content}?page=${page}&sort_by=popularity.desc&api_key=365fae6b1e2fabc371f203e61d7fdbc8&with_genres=${currentGenre.id}&with_original_language=${lang.iso_639_1}`
       );
 
       const data = await response.json();
@@ -31,16 +29,21 @@ function Filters({title,content}) {
       allResults.push(...results); 
     }
 
-    setList(allResults); 
+    setList(allResults);
   } catch (error) {
     console.error('Error fetching TV list:', error); 
   }
 
   };
+
+  const dispatch = useDispatch()
+  const addLanguageHandler = (language) =>{
+    dispatch(addLanguage(language))
+  }
   
     const cardRef = useRef(null)
   
-    const getGenre = async () => { 
+    const getGenre = async (content) => { 
       try {
         const response = 
         await fetch(
@@ -48,9 +51,9 @@ function Filters({title,content}) {
         );
    
         const data = await response.json();
-        setGenre(data.genres); // Access results property for clarity
+        setGenre(data.genres); 
       } catch (error) {
-        console.error('Error fetching TV list:', error); // Handle potential errors
+        console.error('Error fetching TV list:', error); 
       }
     };
     const getLanguages =  async () => { 
@@ -63,31 +66,47 @@ function Filters({title,content}) {
         const data = await response.json();
         const temp=data.filter((d) => (d.name !== "")) 
         temp.sort((a, b) => a.english_name.localeCompare(b.english_name))
-        setLanguages(temp); // Access results property for clarity
+        setLanguages(temp); 
       } catch (error) {
-        console.error('Error fetching TV list:', error); // Handle potential errors
+        console.error('Error fetching TV list:', error); 
       }
     };
     useEffect(() =>{
-        getGenre();
+      const language = JSON.parse(localStorage.getItem("language")) 
+      if(language){
+        dispatch(addLanguage(language))
+      }
+
+      const genre = JSON.parse(localStorage.getItem("Genre"))
+      if(genre){
+        setCurrentGenre(genre)
+      }
+     const content = (title === "Movies")?"movie":"tv"
+        getGenre(content);
         getLanguages();
+        
 },[])
 
 useEffect(() =>{
   const content = (title === "Movies")?"movie":"tv"
- getList(currentGenre,content)
- console.log(list)
 
-},[currentGenre,currentLanguage])
+ getList(content)
+ 
+
+       
+},[currentGenre,lang])
+
+
+
   
   
   return (
     <>
     
-    <div className='w-full h-[150px] justify-between flex relative gap-[50px] top-[100px]'>
+    <div className='w-full justify-between flex relative gap-[50px] top-[100px]'>
     
     <h1 className='text-3xl font-semibold ml-[75px]'>{title}
-    </h1>
+    </h1>    
    
  
      { (currentGenre.name !== title) ?   (
@@ -100,7 +119,7 @@ useEffect(() =>{
      <Menu as="div" className=" relative   inline-block text-left">
 
         <MenuButton className=" flex w-full  text-[16px]  px-2 py-1 text-1xl  text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-[#6d6d6eb3]">
-          {currentGenre.name} 
+       {currentGenre.name } 
           <img src={caret} className="my-1.5 ml-5 h-3 w-5 text-gray-400" />
         </MenuButton>
        
@@ -116,7 +135,9 @@ useEffect(() =>{
                     <a
                       href="#"
                       className="block px-2 py-1 text-sm text-white data-[focus]:underline data-[focus]:text-white"
-                      onClick={() => setCurrentGenre(genre)}
+                      onClick={() => {setCurrentGenre(genre)
+                        localStorage.setItem("Genre",JSON.stringify(genre))
+                      }}
                     >
                       {genre.name}
                     
@@ -135,7 +156,7 @@ useEffect(() =>{
     <Menu as="div" className="mr-[150px] relative mb-[150px] overflow-y text-left">
 
         <MenuButton className=" flex w-full  text-[16px]  px-2 py-1 text-1xl  text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-[#6d6d6eb3]">
-          {currentLanguage.english_name} 
+          {lang.english_name} 
           <img src={caret} className="my-1.5 ml-5 h-3 w-5 text-gray-400" />
         </MenuButton>
        
@@ -151,7 +172,7 @@ className="absolute overflow-y-auto  h-48 left-0 bg-black z-10 w-48 origin-top-r
             <a
               href="#"
               className="block px-2 py-1 text-sm text-white data-[focus]:underline data-[focus]:text-white"
-              onClick={() => setCurrentLanguage(language)}
+              onClick={() =>addLanguageHandler(language)}
             >
               {language.english_name}
             

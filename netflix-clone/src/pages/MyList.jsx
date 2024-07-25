@@ -4,7 +4,7 @@ import { Filters, Template } from '../components'
 
 function MyList() {
   
-  const watchlists = useSelector(state => state.watchLists)
+  const watchlists = JSON.parse(localStorage.getItem("list"))
 
 
   useEffect(() =>{
@@ -13,7 +13,9 @@ function MyList() {
   },[])
   return (
    <div className='w-full h-screen relative top-[100px]  '>
-   
+    
+    <h1 className='text-3xl  ml-[75px]'>My List
+    </h1>    
    <div className={`grid gap-y-[25px] gap-[25px] grid-cols-8 mx-[64px] my-[12px] lg:grid-cols-4 md:grid-cols-2 `} >
       {watchlists.map((watchlist, index) => 
       (

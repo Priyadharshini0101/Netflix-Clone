@@ -1,23 +1,40 @@
-import React,{useState} from 'react'
+import React,{useState,useRef} from 'react'
 import {heroBanner, heroCaption, play,info} from '../assets/index.js'
 import TitleCard from '../components/TitleCard.jsx'
+import Template from '../components/Template.jsx'
 
 
 function Home() {
  
+  const watchlists = JSON.parse(localStorage.getItem("list"))
   return (
     <>
     <div className='relative'>
       <img src={heroBanner} alt="money heist image" className='w-full banner-img'></img>
-      <div className='absolute w-full pl-[6%] top-[40%]'>
+      <div className='absolute w-full pl-[6%] top-[30%]'>
         <img src={heroCaption} alt="money heist caption" className='w-[90%] max-w-[420px] mb-[30px]'></img>
         <p alt="money heist description" className='max-w-[700px] text-1xl mb-[20px]'>When the national mint and a touring school group are held hostage by robbers, police believe that the thieves have no way out. Little do they know that the thieves have a bigger plan in store.</p>
         <div className='flex gap-[10px] mb-[50px]'>
           <button className='rounded-lg px-[20px] py-[8px] inline-flex items-center gap-[10px] text-1xl text-black  bg-white cursor-pointer hover:bg-[#ffffffbf]'><img src={play} alt="play" className='w-[25px]'></img>Play</button>
           <button  className='rounded-lg px-[20px] py-[8px] inline-flex items-center gap-[10px] text-1xl text-white  bg-[#6d6d6eb3] cursor-pointer hover:bg-[#6d6d6e66] ' ><img src={info} alt="info" className='w-[25px]'></img>More Info</button>
         </div>
-      </div>
-    </div>
+   
+   </div>
+   <div className=' relative overflow-x-auto ml-[50px] '>
+  {watchlists ?  <h1 className=''>My List</h1>:""}
+   <div className={`grid gap-y-[10px] gap-[10px] grid-cols-8  lg:grid-cols-4 md:grid-cols-2 `} >
+      {watchlists ? watchlists.map((watchlist, index) => 
+      (
+       <Template card={watchlist.movie} key={index} filter={true} index={index} className='' content={watchlist.content}></Template>
+        
+        )):''}
+     </div>
+   </div>
+   </div>
+
+      
+    
+
   
 
    

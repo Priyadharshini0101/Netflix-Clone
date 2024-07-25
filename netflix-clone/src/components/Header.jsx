@@ -34,12 +34,12 @@ const Header = () => {
             <img src={logo} alt="Netflix logo"
             className='h-[25px] ml-[25px] my-[20px]'></img>
             <ul className='flex gap-[20px]'>
-            <Link to="/"><li className='cursor-pointer hover:text-[#e50914] hover:font-bold ' onClick={() => setLabel("Home - Netflix")}>Home</li></Link> 
-            <Link to="/tvshows"><li className='cursor-pointer hover:text-[#e50914] hover:font-bold'  onClick={() => setLabel("TV Shows - Netflix")}>TV Shows</li></Link>
-               <Link to="/movies"><li className='cursor-pointer hover:text-[#e50914] hover:font-bold'   onClick={() => setLabel("Movies - Netflix")}>Movies</li></Link> 
-              <Link to="/new&popular">  <li className='cursor-pointer hover:text-[#e50914] hover:font-bold'  onClick={() => setLabel("New & Popular - Netflix")}>New & Popular</li></Link>
-              <Link to="/mylist"> <li className='cursor-pointer hover:text-[#e50914] hover:font-bold '  onClick={() => setLabel("My List - Netflix")}>My List</li></Link>
-               <Link to="/browserbylanguages"> <li className='cursor-pointer hover:text-[#e50914] hover:font-bold'  onClick={() => setLabel("Browse by Languages - Netflix")}>Browse by Languages</li></Link>
+            <Link to="/"><li className='cursor-pointer hover:text-[#b3b3b3]' onClick={() => setLabel("Home - Netflix")}>Home</li></Link> 
+            <Link to="/tvshows"><li className='cursor-pointer  hover:text-[#b3b3b3] '  onClick={() => setLabel("TV Shows - Netflix")}>TV Shows</li></Link>
+               <Link to="/movies"><li className='cursor-pointer  hover:text-[#b3b3b3] '   onClick={() => setLabel("Movies - Netflix")}>Movies</li></Link> 
+              <Link to="/new&popular">  <li className='cursor-pointer  hover:text-[#b3b3b3] '  onClick={() => setLabel("New & Popular - Netflix")}>New & Popular</li></Link>
+              <Link to="/mylist"> <li className='cursor-pointer  hover:text-[#b3b3b3]  '  onClick={() => setLabel("My List - Netflix")}>My List</li></Link>
+               <Link to="/browserbylanguages"> <li className='cursor-pointer  hover:text-[#b3b3b3] '  onClick={() => setLabel("Browse by Languages - Netflix")}>Browse by Languages</li></Link>
             </ul>
         </div>
         <div className=' flex gap-[20px] items-center'>

@@ -16,13 +16,9 @@ export const watchListSlice = createSlice({
                 content:action.payload.content
                 
             }
-           
-            // const index = state.watchLists.findIndex((watchlist) => (watchlist.movie.id === watchList.movie.id))
-            // if(index == -1){
-             state.watchLists.push(watchList)
-            // }
-       
+            state.watchLists.push(watchList)
 
+            localStorage.setItem("list",JSON.stringify(state.watchLists))
         },
         removeWatchList:(state,action) =>{
             state.watchLists = state.watchLists.filter((watchList) => watchList.movie.id !== action.payload)

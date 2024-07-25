@@ -1,7 +1,11 @@
 import {configureStore} from '@reduxjs/toolkit'
 import watchListReducer from '../features/list/watchListSlice.js'
+import languageSlice from '../features/list/languageSlice.js'
 export const store = configureStore({
-    reducer: watchListReducer,
+    reducer:{
+        watchList:watchListReducer,
+        language:languageSlice,
+    }
 
 
 })

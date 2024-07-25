@@ -76,7 +76,7 @@ function Template({card,index,className,cardRef,k,src,filter=false,rank,addNumbe
       
             <NavLink to={`/player/${content}/${card.id}`}> 
       <img  
-             src={card.poster_path ? `https://image.tmdb.org/t/p/w500/${card.poster_path}` : NotFound} // Use poster_path for images
+             src={card.poster_path ? `https://image.tmdb.org/t/p/w500/${card.poster_path}` : NotFound}
              alt={card.name}
              className={`  ${card.poster_path ? ` object-contain transition-all duration-700 hover:scale-110  hover:rotate-6` : `h-[225px] object-fill`} max-w-[150px]  rounded-lg cursor-pointer }`}
               

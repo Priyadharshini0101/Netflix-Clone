@@ -1,12 +1,12 @@
 import React, { useEffect, useState,useRef} from 'react';
 import Template from './Template.jsx'
 
-function TitleCard({k,page="1",title,genre,language,content,nogenre="",addNumber=false,popular}) {
-  const [tvList, setTvList] = useState([]); // Use a descriptive name for clarity
+function TitleCard({k,page="1",title,genre,language,content,nogenre="",popular}) {
+  const [tvList, setTvList] = useState([]); 
 
   const cardRef = useRef(null)
 
-  const getTVList = async (genre,language,content,nogenre) => { // Use async/await for cleaner handling
+  const getTVList = async (genre,language,content,nogenre) => { 
     try {
       const response = 
       await fetch(
@@ -14,12 +14,12 @@ function TitleCard({k,page="1",title,genre,language,content,nogenre="",addNumber
       );
  
       const data = await response.json();
-      setTvList(data.results); // Access results property for clarity
+      setTvList(data.results); 
     } catch (error) {
-      console.error('Error fetching TV list:', error); // Handle potential errors
+      console.error('Error fetching TV list:', error);
     }
   };
-  const getTopMovies = async (content) => { // Use async/await for cleaner handling
+  const getTopMovies = async (content) => { 
     try {
       const response = 
       await fetch(
@@ -29,9 +29,9 @@ function TitleCard({k,page="1",title,genre,language,content,nogenre="",addNumber
       const data = await response.json();
       let d = data.results;
       d = d.slice(10,20)
-      setTvList(d); // Access results property for clarity
+      setTvList(d);
     } catch (error) {
-      console.error('Error fetching TV list:', error); // Handle potential errors
+      console.error('Error fetching TV list:', error); 
     }
   };
 
@@ -51,10 +51,9 @@ function TitleCard({k,page="1",title,genre,language,content,nogenre="",addNumber
   const [index, setIndex] = useState(initialArray);
 
   const setindex = (indexToUpdate, newValue) => {
-    const updatedArray = [...index]; // Create a copy of the array
+    const updatedArray = [...index]; 
     updatedArray[newValue] = indexToUpdate;
     setIndex(updatedArray);
-    console.log(index)
   };
   
   const handleScroll = (scrollAmount,leftOrRight) => {
@@ -89,8 +88,8 @@ function TitleCard({k,page="1",title,genre,language,content,nogenre="",addNumber
 
  
   return (
-    <>    <div className=' mt-[50px]' >
-      <h2 className='ml-[50px] mb-[8px]'>{title}</h2>
+    <>    <div className='' >
+      <h2 className='ml-[50px] mb-[8px] '>{title}</h2>
 <div className='flex '>  
   
      <div className='flex gap-[10px] card-list overflow-y-hidden  overflow-x-hidden ' 

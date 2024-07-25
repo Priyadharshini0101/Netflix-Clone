@@ -14,7 +14,7 @@ function Player() {
   const [teaser,setTeaser] = useState(false)
   const [creators,setCreators] = useState(null)
    
-  const watchlists = useSelector(state => state.watchLists)
+  const watchlists = useSelector(state => state.watchList.watchLists)
 
 
   
@@ -32,20 +32,20 @@ const array={
       );
   
       const data = await response.json();
-      const videos = data.results; // Access results property for clarity
+      const videos = data.results; 
     const trailer = videos.filter((video) => (video.type === "Trailer" ))
       if (trailer && trailer.length > 0) {
         if(trailer.length > 1){
           setResult(trailer[1]);
         }else{
           setResult(trailer[0]);
-        } // Set the first video as the result (assuming you want the first one)
+        } 
       } else {
-        setResult(null); // Set result to null if no videos found
+        setResult(null); 
         setTeaser(true)
       }
      
-    console.log(result)
+  
   
       const response1 = await fetch(
         `https://api.themoviedb.org/3/${content}/${id}?language=en-US&api_key=365fae6b1e2fabc371f203e61d7fdbc8`
@@ -55,7 +55,7 @@ const array={
      
   
   
-        setDetails(data1); // Set the first video as the result (assuming you want the first one)
+        setDetails(data1); 
         if(data1 && data1.runtime !== undefined){
           let time = (Number(data1.runtime)/60).toString()
           time = time[0] + "hrs " + time.substr(2,2) + "mins";
@@ -72,11 +72,11 @@ const array={
               name += c.name
               }
              })
-            console.log(name)
+         
             setCreators(name)
         }
     } catch (error) {
-      console.error('Error fetching teaser:', error); // Handle potential errors
+      console.error('Error fetching teaser:', error); 
     }
   };
  
@@ -92,12 +92,10 @@ const array={
 
   const addWatchListHandler = (details,content) =>{
     dispatch(addWatchList({details,content}))
-    console.log(watchlists)
 
   }
   const removeWatchListHandler = (id) =>{
     dispatch(removeWatchList(id))
-    console.log(watchlists)
 
   }
 
@@ -131,7 +129,7 @@ const array={
                   title="trailer"
                   frameBorder='0'
                   allowFullScreen
-                ></iframe>
+                  sandbox></iframe>
                 <div className='flex flex-col w-full  py-2.5 gap-[10px] '>
                 <div className='flex  justify-start w-full'>
                 <div className='bg-[#e50914] w-2 mx-2.5'></div>
