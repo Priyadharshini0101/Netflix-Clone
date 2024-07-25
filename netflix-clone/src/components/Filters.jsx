@@ -4,13 +4,14 @@ import {caret} from '../assets/index.js'
 import {Template} from '../components/index.js'
 import { useSelector, useDispatch } from 'react-redux'
 import { addLanguage } from '../features/list/languageSlice'
+import { addMovieGenres, addTvGenres } from '../features/list/genreSlice.js'
+
 
 
 function Filters({title,content}) {
-  const genreObject = {id:0,name:title}
+  const genres = (content === "tv") ? useSelector(state => state.genre.genres.tv) : useSelector(state => state.genre.genres.movie)
  const lang = useSelector(state => state.language.languages)
   const [genre, setGenre] = useState([]);
-  const [currentGenre, setCurrentGenre] = useState(genreObject)
   const [list,setList] = useState([]);
   const [languages,setLanguages] = useState([])
  
@@ -20,7 +21,7 @@ function Filters({title,content}) {
     const allResults = []; 
     for (let page = 1; page <= 6; page++) {
       const response = await fetch(
-        `https://api.themoviedb.org/3/discover/${content}?page=${page}&sort_by=popularity.desc&api_key=365fae6b1e2fabc371f203e61d7fdbc8&with_genres=${currentGenre.id}&with_original_language=${lang.iso_639_1}`
+        `https://api.themoviedb.org/3/discover/${content}?page=${page}&sort_by=popularity.desc&api_key=365fae6b1e2fabc371f203e61d7fdbc8&with_genres=${genres.id}&with_original_language=${lang.iso_639_1}`
       );
 
       const data = await response.json();
@@ -39,6 +40,14 @@ function Filters({title,content}) {
   const dispatch = useDispatch()
   const addLanguageHandler = (language) =>{
     dispatch(addLanguage(language))
+  }
+
+  const addGenreHandler = (genre) =>{
+    if(content == "tv"){
+      dispatch(addTvGenres(genre))
+    }else{
+      dispatch(addMovieGenres(genre))
+    }
   }
   
     const cardRef = useRef(null)
@@ -77,10 +86,22 @@ function Filters({title,content}) {
         dispatch(addLanguage(language))
       }
 
-      const genre = JSON.parse(localStorage.getItem("Genre"))
-      if(genre){
-        setCurrentGenre(genre)
+      
+      const genretv = JSON.parse(localStorage.getItem("genretv")) 
+      if(genretv){
+       
+          dispatch(addTvGenres(genretv))
+       
       }
+
+      const genremovie = JSON.parse(localStorage.getItem("genremovie"))
+      if(genremovie){
+        dispatch(addMovieGenres(genremovie))
+      }
+
+      
+
+      
      const content = (title === "Movies")?"movie":"tv"
         getGenre(content);
         getLanguages();
@@ -94,7 +115,7 @@ useEffect(() =>{
  
 
        
-},[currentGenre,lang])
+},[genres,lang])
 
 
 
@@ -109,9 +130,9 @@ useEffect(() =>{
     </h1>    
    
  
-     { (currentGenre.name !== title) ?   (
+     { (genres.name !== title) ?   (
              <h2  className='relative left-[-275px] py-1.5 text-[18px] font-medium text-gray-400'>
-                 &gt;&nbsp;&nbsp;&nbsp;&nbsp;{currentGenre.name}
+                 &gt;&nbsp;&nbsp;&nbsp;&nbsp;{genres.name}
                 </h2>
                ) : ("")}
   
@@ -119,7 +140,7 @@ useEffect(() =>{
      <Menu as="div" className=" relative   inline-block text-left">
 
         <MenuButton className=" flex w-full  text-[16px]  px-2 py-1 text-1xl  text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-[#6d6d6eb3]">
-       {currentGenre.name } 
+       {genres.name } 
           <img src={caret} className="my-1.5 ml-5 h-3 w-5 text-gray-400" />
         </MenuButton>
        
@@ -135,8 +156,8 @@ useEffect(() =>{
                     <a
                       href="#"
                       className="block px-2 py-1 text-sm text-white data-[focus]:underline data-[focus]:text-white"
-                      onClick={() => {setCurrentGenre(genre)
-                        localStorage.setItem("Genre",JSON.stringify(genre))
+                      onClick={() => {
+                        addGenreHandler(genre)
                       }}
                     >
                       {genre.name}

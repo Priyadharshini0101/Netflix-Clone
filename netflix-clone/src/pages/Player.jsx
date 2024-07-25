@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { logo } from '../assets';
-import { addWatchList, removeWatchList } from '../features/list/watchListSlice';
+import { addWatchList, pushWatchList, removeWatchList } from '../features/list/watchListSlice';
 import {useDispatch}from 'react-redux'
 import { useSelector } from 'react-redux';
 
@@ -90,7 +90,10 @@ const array={
   
   const dispatch = useDispatch()
 
+  const list = JSON.parse(localStorage.getItem("list"))
+
   const addWatchListHandler = (details,content) =>{
+  
     dispatch(addWatchList({details,content}))
 
   }

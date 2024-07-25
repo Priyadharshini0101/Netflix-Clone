@@ -1,12 +1,30 @@
-import React,{useState,useRef} from 'react'
+import React,{useState,useRef, useEffect} from 'react'
 import {heroBanner, heroCaption, play,info} from '../assets/index.js'
 import TitleCard from '../components/TitleCard.jsx'
 import Template from '../components/Template.jsx'
+import { useDispatch } from 'react-redux'
+import { addWatchList, pushWatchList } from '../features/list/watchListSlice.js'
+
 
 
 function Home() {
- 
   const watchlists = JSON.parse(localStorage.getItem("list"))
+  const dispatch = useDispatch()
+  useEffect(()=>{
+   
+    if(watchlists){
+      watchlists.map((l)=> {
+      
+       const object ={
+         details:l.movie,
+         content:l.content
+       }
+       
+     dispatch(addWatchList(object))
+    })
+   }
+  },[])
+ 
   return (
     <>
     <div className='relative'>

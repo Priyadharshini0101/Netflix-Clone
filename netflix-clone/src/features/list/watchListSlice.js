@@ -16,15 +16,22 @@ export const watchListSlice = createSlice({
                 content:action.payload.content
                 
             }
-            state.watchLists.push(watchList)
-
+          
+            const index = state.watchLists.findIndex((list) => list.movie.id === watchList.movie.id)
+           if(index === -1){
+                state.watchLists.push(watchList)
+           }
             localStorage.setItem("list",JSON.stringify(state.watchLists))
         },
         removeWatchList:(state,action) =>{
             state.watchLists = state.watchLists.filter((watchList) => watchList.movie.id !== action.payload)
+            localStorage.setItem("list",JSON.stringify(state.watchLists))
+        },
+        pushWatchList:(state,action)=>{
+            state.watchLists.push(action.payload)
         }
     }
 })
 
-export const {addWatchList,removeWatchList} = watchListSlice.actions
+export const {addWatchList,removeWatchList,pushWatchList} = watchListSlice.actions
 export default watchListSlice.reducer
