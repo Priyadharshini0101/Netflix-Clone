@@ -11,5 +11,6 @@ import facebook from '../assets/images/facebook.svg'
 import instagram from '../assets/images/instagram.svg'
 import twitter from '../assets/images/twitter.svg'
 import youtube from '../assets/images/youtube.svg'
+import NotFound from '../assets/images/NotFound.jpg'
 
-export {logo,notification,search,user,caret,heroBanner,heroCaption,play,info,facebook,instagram,twitter,youtube}
+export {logo,notification,search,user,caret,heroBanner,heroCaption,play,info,facebook,instagram,twitter,youtube,NotFound}

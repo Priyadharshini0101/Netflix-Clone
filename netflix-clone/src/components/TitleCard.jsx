@@ -1,11 +1,10 @@
 import React, { useEffect, useState,useRef} from 'react';
 import Template from './Template.jsx'
-import useDataContext, { DataContext } from '../contexts/data';
+
 function TitleCard({k,page="1",title,genre,language,content,nogenre="",addNumber=false,popular}) {
   const [tvList, setTvList] = useState([]); // Use a descriptive name for clarity
 
   const cardRef = useRef(null)
-  const {index,setindex} = useDataContext()
 
   const getTVList = async (genre,language,content,nogenre) => { // Use async/await for cleaner handling
     try {
@@ -48,13 +47,23 @@ function TitleCard({k,page="1",title,genre,language,content,nogenre="",addNumber
     
   }, []);
   
+  const initialArray = Array(15).fill(0);
+  const [index, setIndex] = useState(initialArray);
+
+  const setindex = (indexToUpdate, newValue) => {
+    const updatedArray = [...index]; // Create a copy of the array
+    updatedArray[newValue] = indexToUpdate;
+    setIndex(updatedArray);
+    console.log(index)
+  };
+  
   const handleScroll = (scrollAmount,leftOrRight) => {
    
     const container = cardRef.current;
    
     if (container) {
-      const temp = index[k] < 2 ? index[k] + 1: index[k];
-      setindex(temp,k);
+      const temp = index[k] < 2 ? (index[k] + 1) : (index[k])
+      setindex(temp,k)
       if(leftOrRight == "right"){
      
       container.scrollBy({
@@ -63,10 +72,10 @@ function TitleCard({k,page="1",title,genre,language,content,nogenre="",addNumber
         behavior: 'smooth',
       });
     }else{
-      const temp = index[k] > 0 ? index[k] - 1: index[k];
-      setindex(temp,k);
-     
-
+      const temp = index[k] > 0 ? (index[k] - 1) : (index[k])
+      setindex(temp,k)
+    
+    
       container.scrollBy({
         left: -scrollAmount,
         behavior: 'smooth',
@@ -80,11 +89,11 @@ function TitleCard({k,page="1",title,genre,language,content,nogenre="",addNumber
 
  
   return (
-    <>    <div className='mt-[50px]' >
+    <>    <div className=' mt-[50px]' >
       <h2 className='ml-[50px] mb-[8px]'>{title}</h2>
-<div className='flex'>  
+<div className='flex '>  
   
-     <div className='flex gap-[10px] card-list  overflow-x-hidden ' 
+     <div className='flex gap-[10px] card-list overflow-y-hidden  overflow-x-hidden ' 
       ref={cardRef}
       >
 <button

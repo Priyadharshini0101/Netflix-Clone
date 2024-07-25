@@ -19,6 +19,9 @@
   background-image: linear-gradient(180deg , rgba(0,0,0,0.7),10%,transparent);
 
 }
+.nav-dark{
+  background: #141414;
+}
 
 
 .card-list::-webkit-scrollbar{
@@ -64,7 +67,7 @@ a{
     z-index: 2;
     left:0px;
     font-weight: bold;
-   
+    margin-top: 17.5px; 
    width:50px;
    height: 225px;
   }
@@ -72,8 +75,7 @@ a{
    position:absolute;
   
    color: #ffffff;
-  
-  
+  margin-top: 17.5px;
      font-size:50px;
      cursor: pointer;
      z-index: 2;
@@ -86,3 +88,6 @@ a{
   .bgimage{ 
      background-image:linear-gradient(#0000007e,#0000007e),url('/src/assets/images/backgroundImage.jpg')
   }
+
+ 
+

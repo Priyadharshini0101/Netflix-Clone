@@ -4,7 +4,8 @@ import Layout from './Layout.jsx'
 import {Route, RouterProvider, createBrowserRouter, createRoutesFromElements} from 'react-router-dom'
 import './index.css'
 import {Home,TVShows,Movies,NotFound, MyList,Login,Player} from './pages/index.js'
-
+import {store} from './app/store.js'
+import { Provider } from 'react-redux'
 const router = createBrowserRouter(
     createRoutesFromElements(
         <>
@@ -32,5 +33,7 @@ const router = createBrowserRouter(
 )
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <RouterProvider router={router}  />
+    <Provider store={store}>
+          <RouterProvider router={router}  />
+          </Provider>
 )

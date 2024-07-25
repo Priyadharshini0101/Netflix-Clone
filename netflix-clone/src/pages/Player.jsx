@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useLoaderData, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { logo } from '../assets';
-import useDataContext, { DataProvider } from '../contexts/data';
+import { addWatchList, removeWatchList } from '../features/list/watchListSlice';
+import {useDispatch}from 'react-redux'
+import { useSelector } from 'react-redux';
+
 function Player() {
   const { content,id } = useParams();
   const [result, setResult] = useState(null);      
@@ -10,7 +13,11 @@ function Player() {
   const [runtime,setRuntime] = useState(0)
   const [teaser,setTeaser] = useState(false)
   const [creators,setCreators] = useState(null)
+   
+  const watchlists = useSelector(state => state.watchLists)
 
+
+  
 const array={
     "ko":"Korean",
     "ta":"Tamil",
@@ -72,8 +79,6 @@ const array={
       console.error('Error fetching teaser:', error); // Handle potential errors
     }
   };
-
-
  
   useEffect(() => {
     window.scroll(0,0);
@@ -81,29 +86,24 @@ const array={
     
   
     
-  }, [id]); // Update videos when id changes
- 
- const [addToWatchList,setAddToWatchList] = useState([])
-  const setaddtowatchlist = (watchList) =>{
-    
-  let copyWatchList = [...addToWatchList]
-  const index = copyWatchList.findIndex(item => (item.id === watchList.id))
-  if(index === -1){
-    copyWatchList.push(watchList)
-  }else{
+  }, [id]);
+  
+  const dispatch = useDispatch()
 
-    copyWatchList.splice(index,1)
-    console.log("yes mam" + copyWatchList.length)
-    
-  }
-  setAddToWatchList(copyWatchList)
-  console.log(copyWatchList)
-  }
+  const addWatchListHandler = (details,content) =>{
+    dispatch(addWatchList({details,content}))
+    console.log(watchlists)
 
+  }
+  const removeWatchListHandler = (id) =>{
+    dispatch(removeWatchList(id))
+    console.log(watchlists)
+
+  }
 
   return (
     <>
-    <DataProvider value={{addToWatchList,setaddtowatchlist}}>
+   
     <Helmet>    
      <title>Watch Trailer - Netflix</title>
      <meta
@@ -121,7 +121,7 @@ const array={
       <div className='relative  flex flex-col w-full h-[850px] items-center'>
         
     {!teaser ?  
-              ( result && details  ? (
+              ( result && details ? (
               <>
             
                 <iframe
@@ -152,20 +152,30 @@ const array={
                
                  
                   
-              {content === "tv"? <p className='text-[12px] text-gray-200 '>Creators: {creators}</p>:""}
+              {content === "tv" && creators? <p className='text-[12px] text-gray-200 '>Creators: {creators}</p>:""}
                
   
                 {content === "movie" ? details.status !== "Released" ? <p className='text-[14px] text-gray-200 font-bold'>Coming Soon</p> :"" : details.status !== "Ended" ? <p className='text-[14px] text-gray-200 font-bold'>It's official:&nbsp;another Season is coming</p> :""}             
                   <div className='flex my-2.5 gap-[5px]'>
                   <button className='w-full text-white bg-[#e50914] p-2 font-semibold hover:bg-red-400 '>Watch Now</button>
+            {watchlists.findIndex((watchlist) => (watchlist.movie.id === details.id)) !== -1 ?
+            (  <button className='w-full  bg-gray-800 p-2 text-1xl font-semibold  hover:bg-gray-400 text-white'
+                  onClick={() => removeWatchListHandler(details.id)}>Remove from  my watchlist</button>):
                 
-                
-                  <button className='w-full text-black bg-white p-2 text-1xl font-semibold hover:bg-gray-200 ' onClick={() => setaddtowatchlist(details)}>Add to my watchlist</button>
+                  (<button className='w-full text-black bg-white p-2 text-1xl font-semibold hover:bg-gray-200'
+                  onClick={() => addWatchListHandler(details,content)}>Add to my watchlist</button>)}
                   </div>
                   </div>
                 </div>
     
-              </> ) :("")
+              </> ) :( 
+                <div className='flex h-screen w-full justify-center items-center'>
+                   <div
+                   className="inline-block h-[60px] w-[60px] text-[#e50914] animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                   role="status">
+                   </div>                  
+                 </div>
+              )
               )
             : (
                   
@@ -176,7 +186,7 @@ const array={
             )}
 
       </div>
-      </DataProvider>
+   
       
     </>
   );

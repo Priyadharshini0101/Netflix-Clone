@@ -1,6 +1,7 @@
 import React from 'react'
 import {Link} from 'react-scroll'
 import { NavLink } from 'react-router-dom';
+import { NotFound } from '../assets/index.js';
 
 function Template({card,index,className,cardRef,k,src,filter=false,rank,addNumber,content}) {
 
@@ -64,28 +65,32 @@ function Template({card,index,className,cardRef,k,src,filter=false,rank,addNumbe
 
   return (
 
+     
+
        
-    <div  className={`${className} ${(index == 0 && !addNumber && !filter) ? `ml-[50px]` :""}   ${(index == 19 && !addNumber && !filter) ? `mr-[50px]` :""}  flex  gap-[10px] items-center sm:p-4`}>
-       
-         
+    <div  className={`${className} ${(index == 0 && !addNumber && !filter) ? `ml-[50px]` :""}   ${(index == 19 && !addNumber && !filter) ? `mr-[50px]` :""}  h-[260px]  flex  gap-[10px] items-center sm:p-4  `}>
+    
        <Link  to={`${card.id}`}>
             <div className={(addNumber) ? `flex ` : ``} >
             {(addNumber) ? (<div className="relative z-[-1] w-[200px] h-[225px]"> {ranks[rank]}</div>):("")}
       
-            <NavLink to={`/player/${content}/${card.id}`}>  <img
-             src={`https://image.tmdb.org/t/p/w500/${card.poster_path}`} // Use poster_path for images
+            <NavLink to={`/player/${content}/${card.id}`}> 
+      <img  
+             src={card.poster_path ? `https://image.tmdb.org/t/p/w500/${card.poster_path}` : NotFound} // Use poster_path for images
              alt={card.name}
-             className={` max-w-[150px] h-[225px] w-[250px] object-contain rounded-lg cursor-pointer`}
-             
+             className={`  ${card.poster_path ? ` object-contain transition-all duration-700 hover:scale-110  hover:rotate-6` : `h-[225px] object-fill`} max-w-[150px]  rounded-lg cursor-pointer }`}
+              
          onDoubleClick={(e) =>{handleScroll(250,Number(index))}}
-           /> </NavLink>
+           />
+    
+           </NavLink>
            </div>  </Link>  
          
    
      </div>
    
 
-   
+    
   
   )
   

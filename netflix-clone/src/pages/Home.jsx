@@ -1,20 +1,10 @@
 import React,{useState} from 'react'
-import Header from '../components/Header.jsx'
 import {heroBanner, heroCaption, play,info} from '../assets/index.js'
 import TitleCard from '../components/TitleCard.jsx'
-import Footer from '../components/Footer.jsx'
-import { DataProvider } from '../contexts/data.js'
+
 
 function Home() {
-  const initialArray = Array(15).fill(0);
-  const [index, setIndex] = useState(initialArray);
-
-  const setindex = (indexToUpdate, newValue) => {
-    const updatedArray = [...index]; // Create a copy of the array
-    updatedArray[newValue] = indexToUpdate;
-    setIndex(updatedArray);
-    console.log(index)
-  };
+ 
   return (
     <>
     <div className='relative'>
@@ -24,12 +14,12 @@ function Home() {
         <p alt="money heist description" className='max-w-[700px] text-1xl mb-[20px]'>When the national mint and a touring school group are held hostage by robbers, police believe that the thieves have no way out. Little do they know that the thieves have a bigger plan in store.</p>
         <div className='flex gap-[10px] mb-[50px]'>
           <button className='rounded-lg px-[20px] py-[8px] inline-flex items-center gap-[10px] text-1xl text-black  bg-white cursor-pointer hover:bg-[#ffffffbf]'><img src={play} alt="play" className='w-[25px]'></img>Play</button>
-          <button  className='rounded-lg px-[20px] py-[8px] inline-flex items-center gap-[10px] text-1xl text-white  bg-[#6d6d6eb3] cursor-pointer hover:bg-[#6d6d6e66]' ><img src={info} alt="info" className='w-[25px]'></img>More Info</button>
+          <button  className='rounded-lg px-[20px] py-[8px] inline-flex items-center gap-[10px] text-1xl text-white  bg-[#6d6d6eb3] cursor-pointer hover:bg-[#6d6d6e66] ' ><img src={info} alt="info" className='w-[25px]'></img>More Info</button>
         </div>
       </div>
     </div>
   
-<DataProvider value={{index,setindex}}>
+
    
    
     <TitleCard k={0}  title="Familiar TV Shows" genre="18" language="en" content="tv" ></TitleCard>
@@ -50,7 +40,6 @@ function Home() {
     <TitleCard k={12} title="Thriller Movies" genre="53" language="en" content="movie"></TitleCard>
     <TitleCard k={13} title="Japanese Movies & TV" genre="18,16" language="ja" content="movie" ></TitleCard>
     <TitleCard k={14} title="International TV Shows" genre="18,35" language="th" content="tv" nogenre='10751'></TitleCard>
-    </DataProvider>
     </>
 
   )
