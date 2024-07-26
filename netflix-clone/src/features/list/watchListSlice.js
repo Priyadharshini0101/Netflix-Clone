@@ -27,11 +27,8 @@ export const watchListSlice = createSlice({
             state.watchLists = state.watchLists.filter((watchList) => watchList.movie.id !== action.payload)
             localStorage.setItem("list",JSON.stringify(state.watchLists))
         },
-        pushWatchList:(state,action)=>{
-            state.watchLists.push(action.payload)
-        }
     }
 })
 
-export const {addWatchList,removeWatchList,pushWatchList} = watchListSlice.actions
+export const {addWatchList,removeWatchList} = watchListSlice.actions
 export default watchListSlice.reducer

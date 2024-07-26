@@ -20,13 +20,12 @@ export const genreSlice = createSlice({
     name:'genre',
     initialState,
     reducers:{
-        
-        addTvGenres:(state,action)=>{
+        addTvGenre:(state,action)=>{
         
              state.genres.tv = action.payload
              localStorage.setItem("genretv",JSON.stringify(state.genres.tv))
         },
-        addMovieGenres:(state,action) =>{
+        addMovieGenre:(state,action) =>{
             state.genres.movie = action.payload
             localStorage.setItem("genremovie",JSON.stringify(state.genres.movie))
         }
@@ -35,5 +34,5 @@ export const genreSlice = createSlice({
     
 })
 
-export const {addTvGenres,addMovieGenres} = genreSlice.actions
+export const {addTvGenre,addMovieGenre} = genreSlice.actions
 export default genreSlice.reducer

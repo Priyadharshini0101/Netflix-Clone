@@ -1,17 +1,9 @@
-import './App.css'
-import Home from './pages/Home'
-import { DataProvider } from './contexts/data'
-
+import "./App.css";
+import Home from "./pages/Home";
+import { DataProvider } from "./contexts/data";
 
 function App() {
-   
-
-  return (
-    <>
-  
-   
-    </>
-  )
+  return <></>;
 }
 
-export default App
+export default App;

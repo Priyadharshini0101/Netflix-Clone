@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit'
 
 const initialState = {
-    languages : {
+    language : {
         iso_639_1: "en",
         english_name: "English",
         name: "English"
@@ -16,8 +16,8 @@ export const languageSlice = createSlice({
         
         addLanguage:(state,action)=>{
         
-             state.languages = action.payload
-             localStorage.setItem("language",JSON.stringify(state.languages))
+             state.language = action.payload
+             localStorage.setItem("language",JSON.stringify(state.language))
         },
       
     },

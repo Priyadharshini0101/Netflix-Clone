@@ -1,149 +1,152 @@
-import React, { useEffect, useState,useRef} from 'react';
-import Template from './Template.jsx'
+import React, { useEffect, useState, useRef } from "react";
+import Template from "./Template.jsx";
 
-function TitleCard({k,page="1",title,genre,language,content,nogenre="",popular}) {
-  const [tvList, setTvList] = useState([]); 
+function TitleCard({
+  id,
+  title,
+  genre,
+  language,
+  content,
+  notIncludedGenre,
+  addRank,
+}) {
+  const [list, setList] = useState([]);
+  const [scrollAmount,setScrollAmount] = useState(window.innerWidth-50);
+  const cardRef = useRef(null);
 
-  const cardRef = useRef(null)
-
-  const getTVList = async (genre,language,content,nogenre) => { 
+  const getList = async () => {
     try {
-      const response = 
-      await fetch(
-        `https://api.themoviedb.org/3/discover/${content}?page=${page}&sort_by=popularity.desc&api_key=365fae6b1e2fabc371f203e61d7fdbc8&with_genres=${genre}&with_original_language=${language}&without_genres=${nogenre}`
+      const response = await fetch(
+        `https://api.themoviedb.org/3/discover/${content}?page=1&sort_by=addRankity.desc&api_key=365fae6b1e2fabc371f203e61d7fdbc8&with_genres=${genre}&with_original_language=${language}&without_genres=${notIncludedGenre}`
       );
- 
+
       const data = await response.json();
-      setTvList(data.results); 
+      setList(data.results);
     } catch (error) {
-      console.error('Error fetching TV list:', error);
+      console.error("Error fetching list:", error);
     }
   };
-  const getTopMovies = async (content) => { 
+  const getTrending = async () => {
     try {
-      const response = 
-      await fetch(
-          `https://api.themoviedb.org/3/trending/${content}/day?language=en-US&api_key=365fae6b1e2fabc371f203e61d7fdbc8`      
-        );
- 
+      const response = await fetch(
+        `https://api.themoviedb.org/3/trending/${content}/day?language=en-US&api_key=365fae6b1e2fabc371f203e61d7fdbc8`
+      );
+
       const data = await response.json();
       let d = data.results;
-      d = d.slice(10,20)
-      setTvList(d);
+      d = d.slice(0, 10);
+      setList(d);
     } catch (error) {
-      console.error('Error fetching TV list:', error); 
+      console.error("Error fetching trending:", error);
     }
   };
-
-   
 
   useEffect(() => {
-    if(!popular){
-    getTVList(genre,language,content,nogenre);
-    }else{
-      getTopMovies(content);
-  
+    if (!addRank) {
+      getList();
+    } else {
+      getTrending();
     }
-    
-  }, []);
-  
-  const initialArray = Array(15).fill(0);
-  const [index, setIndex] = useState(initialArray);
-
-  const setindex = (indexToUpdate, newValue) => {
-    const updatedArray = [...index]; 
-    updatedArray[newValue] = indexToUpdate;
-    setIndex(updatedArray);
-  };
-  
-  const handleScroll = (scrollAmount,leftOrRight) => {
-   
-    const container = cardRef.current;
-   
-    if (container) {
-      const temp = index[k] < 2 ? (index[k] + 1) : (index[k])
-      setindex(temp,k)
-      if(leftOrRight == "right"){
-     
-      container.scrollBy({
-        
-        left: scrollAmount,
-        behavior: 'smooth',
-      });
-    }else{
-      const temp = index[k] > 0 ? (index[k] - 1) : (index[k])
-      setindex(temp,k)
-    
-    
-      container.scrollBy({
-        left: -scrollAmount,
-        behavior: 'smooth',
-      });
-    }
-    }
-  }
-
-
-   
-
- 
-  return (
-    <>    <div className='' >
-      <h2 className='ml-[50px] mb-[8px] '>{title}</h2>
-<div className='flex '>  
-  
-     <div className='flex gap-[10px] card-list overflow-y-hidden  overflow-x-hidden ' 
-      ref={cardRef}
-      >
-<button
- id={cardRef+ 'prev' + k}
-onClick={() => handleScroll(1450)} 
-className={`btn-prev bg-[hsla(0, 0%, 8%, .7)]   rounded  ${index[k] > 0 ? `hover:bg-[#6d6d6e66]`:``}`} 
-onMouseOver={() => 
-  {
-   
-    {index[k] > 0 ? (document.getElementById(cardRef + 'prev' + k).innerHTML = `&lang;`) :("")}
-  }
-}
-onMouseOut={() => 
-  {
-   
- (document.getElementById(cardRef + 'prev' + k).innerHTML = ``)
-  }
-}
-></button>
-  
-  
-
-      {tvList.map((card, index) => 
-      (
-       <Template card={card} key={index} k={k}   cardRef={cardRef} index={index} className='' rank={index}  addNumber={popular} content={content}></Template>
       
-        ))}
-        
-   <button  
-  id={cardRef + 'next' + k}
-   onMouseOver={() => 
-  {
-{index[k] < 2 ? ( document.getElementById(cardRef + 'next' + k).innerHTML = `&rang;`):("")}
-  }
-}
-onMouseOut={() =>{
-  
-document.getElementById(cardRef + 'next' + k).innerHTML = ``
+   window.addEventListener(('resize'),handler);
+  },[])
  
-}}
-  onClick={() =>handleScroll(1450,"right")} 
-  className={`btn-next bg-[hsla(0, 0%, 8%, .7)]   onmouseover:bg-[#6d6d6e66] rounded ${index[k] < 2 ? `hover:bg-[#6d6d6e66]` : ``}`}></button>
-        </div>
-        </div>
-   
     
+    const handler = () =>{
+      setScrollAmount(window.innerWidth-50);
+    }
 
+  const handleScroll = ( leftOrRight) => {
+    const container = cardRef.current;
   
-    </div>
-    </>
+    if (container) {
+    
+      if (leftOrRight == "right") {
+        container.scrollBy({
+          left:scrollAmount,
+          behavior: "smooth",
+        });
+      } else {
+        
+   
+        container.scrollBy({
+          left:-scrollAmount ,
+          behavior: "smooth",
+        });
+      }
+    }
+  };
 
+  return (
+    <>
+      {" "}
+      <div className="">
+        <h2 className="ml-[50px] mb-[8px] ">{title}</h2>
+        <div className="flex ">
+          <div
+            className="flex gap-[10px] card-list overflow-y-hidden  overflow-x-hidden "
+            ref={cardRef}
+          >
+            <button
+              id={cardRef + "prev" + id}
+              onClick={() => {
+             handleScroll()}}
+              className={`btn-prev bg-[hsla(0, 0%, 8%, .7)]   rounded 
+             hover:bg-[#6d6d6e66]
+            `}
+              onMouseOver={() => {
+                {
+                  
+              
+              
+                   (document.getElementById(
+                        cardRef + "prev" + id
+                      ).innerHTML = `&lang;`)
+                  
+                }
+              }}
+              onMouseOut={() => {
+                document.getElementById(cardRef + "prev" + id).innerHTML = ``;
+              }}
+            ></button>
+
+            {list.map((value, index) => (
+              <Template
+                card={value}
+                key={index}
+                cardRef={cardRef}
+                index={index}
+                addRank={addRank}
+                content={content}
+              ></Template>
+            ))}
+
+            <button
+              id={cardRef + "next" + id}
+              onMouseOver={() => {
+                {
+                  
+                     (document.getElementById(
+                        cardRef + "next" + id
+                      ).innerHTML = `&rang;`)
+                  
+                }
+              }}
+                
+              
+              onMouseOut={() => {
+                document.getElementById(cardRef + "next" + id).innerHTML = ``;
+              }}
+              onClick={() => handleScroll( "right")}
+              className={`btn-next bg-[hsla(0, 0%, 8%, .7)]  hover:bg-[#6d6d6e66]
+              onmouseover:bg-[#6d6d6e66] rounded
+            
+              `}
+            ></button>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
 

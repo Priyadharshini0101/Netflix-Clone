@@ -1,13 +1,10 @@
-import React from 'react'
-import { Filters } from '../components'
+import React from "react";
+import { Filters } from "../components";
 
 function Movies() {
   return (
-    <>
-    
-    <Filters title="Movies" content="movie"></Filters>  
-    </>
-  )
+    <Filters title="Movies" content="movie"></Filters>
+  );
 }
 
-export default Movies
+export default Movies;
