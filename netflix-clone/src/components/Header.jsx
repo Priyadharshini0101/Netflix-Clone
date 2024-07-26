@@ -3,6 +3,7 @@ import { logo, notification, search, user, caret } from "../assets/index.js";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import { logout } from "../firebase.js";
+import { useLocation } from "react-router-dom";
 import {
   children,
   manageProfile,
@@ -43,16 +44,16 @@ const Header = () => {
           ></img>
           <ul className="flex gap-[20px]">
             <Link to="/" >
-              <li
-                className="cursor-pointer hover:text-[#b3b3b3]"
+              <li 
+                className={`cursor-pointer hover:text-[#b3b3b3] ${useLocation().pathname === '/' ? `text-white font-semibold` : ``}`}
                 onClick={() => setHelmet("Home - Netflix")}
               >
                 Home
               </li>
             </Link>
-            <Link to="/tvshows">
+            <Link to="/tvshows" >
               <li
-                className="cursor-pointer  hover:text-[#b3b3b3] "
+                className={`cursor-pointer hover:text-[#b3b3b3] ${useLocation().pathname === '/tvshows' ? `text-white font-semibold` : ``}`}
                 onClick={() => setHelmet("TV Shows - Netflix")}
               >
                 TV Shows
@@ -60,7 +61,7 @@ const Header = () => {
             </Link>
             <Link to="/movies">
               <li
-                className="cursor-pointer  hover:text-[#b3b3b3] "
+                className={`cursor-pointer hover:text-[#b3b3b3] ${useLocation().pathname === '/movies' ? `text-white font-semibold` : ``}`}
                 onClick={() => setHelmet("Movies - Netflix")}
               >
                 Movies
@@ -69,7 +70,7 @@ const Header = () => {
             <Link to="/new&popular">
               {" "}
               <li
-                className="cursor-pointer  hover:text-[#b3b3b3] "
+                className={`cursor-pointer hover:text-[#b3b3b3] ${useLocation().pathname === '/new&popular' ? `text-white font-semibold` : ``}`}
                 onClick={() => setHelmet("New & Popular - Netflix")}
               >
                 New & Popular
@@ -78,7 +79,7 @@ const Header = () => {
             <Link to="/mylist">
               {" "}
               <li
-                className="cursor-pointer  hover:text-[#b3b3b3]  "
+                className={`cursor-pointer hover:text-[#b3b3b3] ${useLocation().pathname === '/mylist' ? `text-white font-semibold` : ``}`}
                 onClick={() => setHelmet("My List - Netflix")}
               >
                 My List
@@ -87,7 +88,7 @@ const Header = () => {
             <Link to="/browserbylanguages">
               {" "}
               <li
-                className="cursor-pointer  hover:text-[#b3b3b3] "
+                className={`cursor-pointer hover:text-[#b3b3b3] ${useLocation().pathname === '/browserbylanguages' ? `text-white font-semibold` : ``}`}
                 onClick={() => setHelmet("Browse by Languages - Netflix")}
               >
                 Browse by Languages
