@@ -191,7 +191,7 @@ function Player() {
                   ) : (
                     ""
                   )}
-                  <div className="flex my-2.5 gap-[5px]">
+                  <div className="flex sm:gap-[10px] sm:flex-col my-2.5 gap-[5px]">
                     <button className="w-full text-white bg-[#e50914] p-2 font-semibold hover:bg-red-400 ">
                       Watch Now
                     </button>

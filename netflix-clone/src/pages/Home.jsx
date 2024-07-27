@@ -27,7 +27,7 @@ function Home() {
       <img src={heroBanner} alt="money heist image" className='banner'></img>
       <div className='absolute w-full pl-[6%] top-[20%] md:top-[15%] sm:top-[5%]'>
         <img src={heroCaption} alt="money heist caption" className='w-[90%] max-w-[480px] mb-[30px] md:mb-[15px] md:max-w-[320px] sm:max-w-[240px]'></img>
-        <p alt="money heist description" className='max-w-[700px] md:max-w-[500px] text-1xl mb-[20px] md:mb-[10px] sm:text-[14px] '>When the national mint and a touring school group are held hostage by robbers, police believe that the thieves have no way out. Little do they know that the thieves have a bigger plan in store.</p>
+        <p alt="money heist description" className='max-w-[700px] md:max-w-[500px] text-1xl mb-[20px] md:mb-[10px] sm:text-[14px] xs:hidden '>When the national mint and a touring school group are held hostage by robbers, police believe that the thieves have no way out. Little do they know that the thieves have a bigger plan in store.</p>
         <div className='flex gap-[10px] mb-[50px] '>
           <button className='rounded-lg px-[20px] py-[8px] sm:px-[10px] sm:py-[4px] sm:text-[14px] inline-flex items-center gap-[10px] sm:gap-[5px] text-1xl text-black  bg-white cursor-pointer hover:bg-[#ffffffbf]'><img src={play} alt="play" className='w-[25px] sm:w-[10px] p-0'></img>Play</button>
           <button  className='rounded-lg px-[20px]  py-[8px] sm:px-[10px] sm:py-[4px] sm:text-[14px] inline-flex items-center gap-[10px] sm:gap-[5px] text-1xl text-white  bg-[#6d6d6eb3] cursor-pointer hover:bg-[#6d6d6e66] ' ><img src={info} alt="info" className='w-[25px] sm:w-[10px] p-0'></img>More Info</button>
@@ -35,7 +35,7 @@ function Home() {
       </div>
    <div className=' relative overflow-x-auto ml-[50px] sm:text-[14px] sm:ml-[25px] mt-[10px] overflow-hidden '>
       {watchlists ?  <h1 className=''>My List</h1>:""}
-      <div className={`grid gap-y-[10px] gap-[10px] grid-cols-8 sm:gap-[5px] lg:grid-cols-6  md:grid-cols-4 sm:grid-cols-3 `} >
+      <div className={`grid gap-y-[10px] gap-[10px] grid-cols-8 sm:gap-[5px] lg:grid-cols-6  md:grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 `} >
           {watchlists ? watchlists.map((watchlist, index) => 
           (
           <Template card={watchlist.movie} key={index} filter={true} index={index} className='' content={watchlist.content}></Template>

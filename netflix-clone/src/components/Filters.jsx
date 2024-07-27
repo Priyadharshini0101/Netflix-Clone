@@ -99,7 +99,7 @@ function Filters({ title, content }) {
     <>
       <div className="w-full sm:flex-col justify-between  flex relative gap-[50px] md:gap-[0px] top-[100px]">
         <div className="flex gap-[25px]">
-        <h1 className="text-3xl font-semibold md:text-2xl ml-[75px] md:ml-[25px]  w-[150px]">{title}</h1>
+        <h1 className="text-3xl font-semibold sm:text-2xl ml-[75px] md:ml-[25px] xs:ml-[10px] ">{title}</h1>
 
         {currentGenre.name !== title ? (
           <h2 className="relative  sm:text-[14px] py-1.5 text-[18px]  font-medium text-gray-400">
@@ -107,10 +107,10 @@ function Filters({ title, content }) {
           </h2>) : ("")}
           </div>
 
-        <div className="flex sm:justify-between sm:mx-[24px] sm:mt-[24px]  gap-[25px] md:gap-[10px]">
+        <div className="flex sm:justify-between sm:mx-[24px] xs:mx-[12px] sm:mt-[24px]  gap-[25px] md:gap-[10px] ">
           
           <Menu as="div" className=" relative text-left">
-            <MenuButton className=" flex   text-[16px] md:text-[14px] md:px-1.5 px-2 py-1 text-1xl  text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-[#6d6d6eb3]">
+            <MenuButton className=" flex   text-[16px] sm:text-[14px]  md:px-1.5  px-2 py-1 text-1xl  text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-[#6d6d6eb3]">
               {currentGenre.name}
               <img src={caret} className="my-1.5 ml-5 h-3 w-5 text-gray-400" />
             </MenuButton>
@@ -137,7 +137,7 @@ function Filters({ title, content }) {
 
           <Menu
             as="div"
-            className="mr-[150px]  relative mb-[150px] md:mr-[50px] overflow-y text-left">
+            className="mr-[150px]  relative  md:mr-[50px] overflow-y text-left">
             <MenuButton className=" flex w-full  text-[16px] sm:text-[14px] md:px-1.5 px-2 py-1 text-1xl  text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-[#6d6d6eb3]">
               {currentLanguage.english_name}
               <img src={caret} className="my-1.5 ml-5 h-3 w-5 text-gray-400" />
@@ -165,7 +165,7 @@ function Filters({ title, content }) {
         </div>
       </div>
 
-      {contentList.length > 0 ?   <div className="grid gap-[25px] gap-x-[25px] grid-cols-8 mx-[64px]  lg:mx-[24px] md:mx-[12px]  md:gap-x-[10px] md:gap-[10px] lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-3 sm:mx-[6px]  ">
+      {contentList.length > 0 ?   <div className="grid mt-[100px] gap-[25px] gap-x-[25px] grid-cols-8 mx-[64px] xs:mx-[0px] xs:grid-cols-2 lg:mx-[24px] md:mx-[12px]  md:gap-x-[10px] md:gap-[10px] lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-3 sm:mx-[6px]  ">
  { contentList.map((value, index) => (
           <Template
             card={value}
@@ -175,7 +175,7 @@ function Filters({ title, content }) {
             content={content}
           ></Template>
         ))}
-        </div> : <NotFound title={`Find ${title} based on your interests.....`} className="text-gray-400  text-xl"></NotFound>
+        </div> : <NotFound title={`Find ${title} based on your interests.....`} className="text-gray-400  text-xl text-[14px] text-center"></NotFound>
       }
   
     </>

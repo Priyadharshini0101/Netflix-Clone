@@ -16,6 +16,7 @@ const Header = () => {
   const [menu, setMenu] = useState(false);
   const [navMenu,setNavMenu] = useState(false)
   const navRef = useRef();
+  const location = useLocation()
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -34,7 +35,7 @@ const Header = () => {
         <meta name="description" content={``}></meta>
       </Helmet>
       <nav
-        className="bg w-full px-[50px] sm:px-[25px]  z-50 xs:flex-col flex justify-between fixed text-sm background-header "
+        className="bg w-full px-[50px] sm:px-[25px] xs:px-[10px]  z-50  flex justify-between fixed text-sm background-header "
         ref={navRef}
   
       >
@@ -47,15 +48,15 @@ const Header = () => {
             className="h-[25px] ml-[25px] my-[20px] xs:mx-[0px]"
           ></img>
   
-<button data-collapse-toggle="navbar-default" type="button" class="hidden  md:block items-center p-2 w-10 h-10 justify-center  " aria-controls="navbar-default" aria-expanded="false" onClick={() => setNavMenu((navMenu) => !navMenu)}>
-   <div className="flex gap-[5px]">  <a className="text-white text-[14px] ">Browse </a><img src={caret} className="w-[20px] h-[15px] my-[3.5px]"></img></div>
+<button data-collapse-toggle="navbar-default" type="button" class="hidden  md:block items-center p-2 w-10 h-10 justify-center" aria-controls="navbar-default" aria-expanded="false" onClick={() => setNavMenu((navMenu) => !navMenu)}>
+   <div className="flex gap-[5px]">  <a className="text-white text-[14px] ">Browse </a><img src={caret} className={`w-[20px] h-[15px] my-[3.5px] ${navMenu ? `transition ease-in-out rotate-180`:`transition ease-out`}`}></img></div>
     </button>
     
 <div className={`${navMenu ? `md:absolute top-[100%] left-[20%] md:bg-black md:p-5 sm:p-2.5 md:text-center  md:border-t-gray-200 md:border-black md:border-[2.5px]` : `md:hidden`} `}>
   <ul className={` flex  gap-[20px] md:flex-col`}>
             <Link to="/" >
               <li 
-                className={`cursor-pointer hover:text-[#b3b3b3] ${useLocation().pathname === '/' ? `text-white font-semibold` : ``}   `}
+                className={`cursor-pointer hover:text-[#b3b3b3] ${location.pathname === '/' ? `text-white font-semibold` : ``}   `}
                 onClick={() => setHelmet("Home - Netflix")}
               >
                 Home
@@ -63,7 +64,7 @@ const Header = () => {
             </Link>
             <Link to="/tvshows" >
               <li
-                className={`block cursor-pointer hover:text-[#b3b3b3] ${useLocation().pathname === '/tvshows' ? `text-white font-semibold` : ``}`}
+                className={`block cursor-pointer hover:text-[#b3b3b3] ${location.pathname === '/tvshows' ? `text-white font-semibold` : ``}`}
                 onClick={() => setHelmet("TV Shows - Netflix")}
               >
                 TV Shows
@@ -71,7 +72,7 @@ const Header = () => {
             </Link>
             <Link to="/movies">
               <li
-                className={`cursor-pointer hover:text-[#b3b3b3] ${useLocation().pathname === '/movies' ? `text-white font-semibold` : ``}`}
+                className={`cursor-pointer hover:text-[#b3b3b3] ${location.pathname === '/movies' ? `text-white font-semibold` : ``}`}
                 onClick={() => setHelmet("Movies - Netflix")}
               >
                 Movies
@@ -80,7 +81,7 @@ const Header = () => {
             <Link to="/new&popular">
               {" "}
               <li
-                className={`cursor-pointer hover:text-[#b3b3b3] ${useLocation().pathname === '/new&popular' ? `text-white font-semibold` : ``}`}
+                className={`cursor-pointer hover:text-[#b3b3b3] ${location.pathname === '/new&popular' ? `text-white font-semibold` : ``}`}
                 onClick={() => setHelmet("New & Popular - Netflix")}
               >
                 New & Popular
@@ -89,7 +90,7 @@ const Header = () => {
             <Link to="/mylist">
               {" "}
               <li
-                className={`cursor-pointer hover:text-[#b3b3b3] ${useLocation().pathname === '/mylist' ? `text-white font-semibold` : ``}`}
+                className={`cursor-pointer hover:text-[#b3b3b3] ${location.pathname === '/mylist' ? `text-white font-semibold` : ``}`}
                 onClick={() => setHelmet("My List - Netflix")}
               >
                 My List
@@ -98,7 +99,7 @@ const Header = () => {
             <Link to="/browserbylanguages">
               {" "}
               <li
-                className={`cursor-pointer hover:text-[#b3b3b3] ${useLocation().pathname === '/browserbylanguages' ? `text-white font-semibold` : ``}`}
+                className={`cursor-pointer hover:text-[#b3b3b3] ${location.pathname === '/browserbylanguages' ? `text-white font-semibold` : ``}`}
                 onClick={() => setHelmet("Browse by Languages - Netflix")}
               >
                 Browse by Languages
@@ -110,7 +111,7 @@ const Header = () => {
 
         <div className=" flex gap-[20px] items-center xs:justify-between">
           <img src={search} alt="search icon" className="cursor-pointer"></img>
-          <p>Children</p>
+          <p className="xs:hidden">Children</p>
           <img
             src={notification}
             alt="notification icon"
@@ -148,15 +149,15 @@ const Header = () => {
                 tabindex="-1"
               >
                 <div
-                  className={`py-1 ${menu ? `py-2.5 px-1` : `hidden`}`}
+                  className={`py-1 ${menu ? `py-2.5 px-1 sm:px-0.5 sm:py-1.5` : `hidden`}`}
                   role="none"
                 >
-                  <div className="flex gap-[10px] py-[5%] px-[10%]">
+                  <div className="flex gap-[10px]  py-[5%] px-[10%]">
                     {" "}
                     <img src={children} className="rounded-md"></img>{" "}
                     <a
                       href="#"
-                      class="text-[13px] hover:underline  p-[4%] text-sm text-white text-left"
+                      class="text-[13px] hover:underline   p-[4%] text-sm text-white text-left"
                       role="menuitem"
                       tabindex="-1"
                       id="menu-item-0"

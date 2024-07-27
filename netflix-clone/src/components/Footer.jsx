@@ -19,7 +19,7 @@ function Footer() {
             <img src={youtube}></img>
           </a>
         </div>
-        <ul className="grid gap-y-[10px]  grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2  gap-x-[100px] mb-[30px] text-[13px] text-[#808080]">
+        <ul className="grid gap-y-[10px]  grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2  gap-x-[100px] mb-[30px] text-[13px] text-[#808080] xs:grid-cols-1">
           <li>Audio Description</li>
           <li>Help Center</li>
           <li>Gift Cards</li>

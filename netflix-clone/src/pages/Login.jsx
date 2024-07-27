@@ -56,16 +56,16 @@ const navigate = useNavigate()
         </div>
       </div>
 
-      <div className="h-[100vh] px-[20%] py-[8%] sm:px-[10%] sm:py-[4%] items-center justify-center flex background-login">
-        <div className="flex flex-col  w-[100%] max-w-[450px] sm:max-w-[400px] bg-[rgba(0,0,0,0.75)] rounded-lg p-[64px] sm:p-[48px]">
-          <h1 className="text-[32px] sm:text-[24px]  font-semibold mb-[28px] sm:mb-[14px]  ">
+      <div className="h-[100vh] px-[20%] py-[8%] sm:px-[10%] xs:px-[5%] xs:py-[2%] sm:py-[4%]  items-center justify-center flex background-login">
+        <div className="flex flex-col  w-[100%] max-w-[450px] sm:max-w-[400px] bg-[rgba(0,0,0,0.75)] rounded-lg p-[64px] sm:p-[48px] xs:p-[32px]">
+          <h1 className="text-[32px] sm:text-[24px] xs:text-[20px]  font-semibold mb-[28px] sm:mb-[14px] xs:mb-[12px] ">
             {signState == "Sign In" ? "Sign Up" : "Sign In"}
           </h1>
 
           <form className="flex flex-col gap-[25px] sm:gap-[10px]">
             {signState == "Sign In" ? (
               <input
-                className=" placeholder:text-[16px] sm:placeholder:text-[14px] sm:text-[14px] sm:p-[14px] text-[16px]  w-[100%] h-[50px] bg-[#333] text-white border-0 outline-0 rounded-lg p-[16px]"
+                className=" placeholder:text-[16px] sm:placeholder:text-[14px]  xs:placeholder:text-[12px] sm:text-[14px] xs:text-[12px] sm:p-[14px]  xs:p-[12px] text-[16px]  w-[100%] h-[50px] bg-[#333] text-white border-0 outline-0 rounded-lg p-[16px]"
                 type="text"
                 placeholder="Your name"
                 onChange={(e) => setName(e.target.value)}
@@ -75,33 +75,33 @@ const navigate = useNavigate()
               ""
             )}
             <input
-              className=" placeholder:text-[16px] sm:placeholder:text-[14px]  sm:text-[14px] sm:p-[14px] text-[16px]  w-[100%] h-[50px] bg-[#333] text-white border-0 outline-0 rounded-lg p-[16px]"
+              className=" placeholder:text-[16px] sm:placeholder:text-[14px] xs:placeholder:text-[12px] sm:text-[14px] sm:p-[14px] xs:text-[12px] text-[16px] xs:p-[12px] w-[100%] h-[50px] bg-[#333] text-white border-0 outline-0 rounded-lg p-[16px]"
               type="email"
               placeholder="Email"
               onChange={(e) =>setEmail(e.target.value)}
               value={email}
             ></input>
             <input
-              className=" placeholder:text-[16px] text-[16px] sm:placeholder:text-[14px] sm:text-[14px]  sm:p-[14px]  w-[100%] h-[50px] bg-[#333] text-white border-0 outline-0 rounded-lg p-[16px]"
+              className=" placeholder:text-[16px] text-[16px] sm:placeholder:text-[14px] xs:placeholder:text-[12px] sm:text-[14px] xs:text-[12px] sm:p-[14px] xs:p-[12px] w-[100%] h-[50px] bg-[#333] text-white border-0 outline-0 rounded-lg p-[16px]"
               type="password"
               placeholder="Password"
               onChange={(e) => setPassword(e.target.value)}
               value={password}
             ></input>
-            <button type="submit" onClick={user_auth} className="mt-[20px] sm:mt-[10px] cursor-pointer w-[100%] border-0 outline-0 p-[16px] bg-[#e50914] text-white rounded-lg text-[16px] ">
+            <button type="submit" onClick={user_auth} className="mt-[20px] sm:mt-[10px] xs:mt-[5px] cursor-pointer w-[100%] border-0 outline-0 p-[16px] bg-[#e50914] text-white rounded-lg text-[16px] ">
               {signState == "Sign In" ? "Sign Up" : "Sign In"}
             </button>
             <div className="flex items-cener justify-between text-[#b3b3b3] text-[13px]">
               <div className="flex items-center gap-[5px]">
-                <input className="w-[18px] h-[18px] sm:w-[14px] sm:h-[14px]" type="checkbox"></input>
+                <input className="w-[18px] h-[18px] sm:w-[14px] xs:w-[12px] sm:h-[14px] xs:h-[12px]" type="checkbox"></input>
                 <label htmlFor="">Remember Me</label>
               </div>
               <p>Need Help?</p>
             </div>
           </form>
-          <div className="mt-[40px] sm:mt-[30px]  text-[#737373]">
+          <div className="mt-[40px] sm:mt-[30px] xs:mt-[20px]  text-[#737373]">
             {signState  == "Sign In"? (
-              <p className="sm:text-[14px]">
+              <p className="sm:text-[14px[ xs:text-[12px]">
                 New to Netflix?{" "}
                 <span
                   className="ml-[6px] text-[#fff] font-semibold cursor-pointer"
@@ -113,7 +113,7 @@ const navigate = useNavigate()
                 </span>
               </p>
             ) : (
-              <p className="sm:text-[14px]">
+              <p className="sm:text-[14px] xs:text-[12px]">
                 Already have account?{" "}
                 <span
                   className="ml-[6px] text-[#fff] font-semibold cursor-pointer"
