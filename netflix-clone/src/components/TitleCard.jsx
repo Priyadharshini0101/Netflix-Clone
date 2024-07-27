@@ -81,17 +81,17 @@ function TitleCard({
     <>
       {" "}
       <div className="">
-        <h2 className="ml-[50px] mb-[8px] ">{title}</h2>
-        <div className="flex ">
+        <h2 className="ml-[50px] mb-[8px] sm:text-[14px] sm:ml-[25px] md:mt-[25px] ">{title}</h2>
+        <div className="flex">
           <div
-            className="flex gap-[10px] card-list overflow-y-hidden  overflow-x-hidden "
+            className="flex gap-[10px] md:gap-[5px] card-list overflow-y-hidden  overflow-x-hidden "
             ref={cardRef}
           >
             <button
               id={cardRef + "prev" + id}
               onClick={() => {
              handleScroll()}}
-              className={`btn-prev bg-[hsla(0, 0%, 8%, .7)]   rounded 
+              className={`btn-prev bg-[hsla(0, 0%, 8%, .7)] md:h-[190px] md:my-[5px]   rounded 
              hover:bg-[#6d6d6e66]
             `}
               onMouseOver={() => {
@@ -138,7 +138,7 @@ function TitleCard({
                 document.getElementById(cardRef + "next" + id).innerHTML = ``;
               }}
               onClick={() => handleScroll( "right")}
-              className={`btn-next bg-[hsla(0, 0%, 8%, .7)]  hover:bg-[#6d6d6e66]
+              className={`btn-next bg-[hsla(0, 0%, 8%, .7)] md:h-[190px] md:my-[5px] hover:bg-[#6d6d6e66]
               onmouseover:bg-[#6d6d6e66] rounded
             
               `}

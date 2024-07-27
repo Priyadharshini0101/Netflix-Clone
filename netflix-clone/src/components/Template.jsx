@@ -170,10 +170,10 @@ function Template({
   return (
     <div
       className={`${className} ${
-        index == 0 && !addRank && !filter ? `ml-[50px]` : ""
+        index == 0 && !addRank && !filter ? `ml-[50px] sm:ml-[10px]` : ""
       }   ${
-        index == 19 && !addRank && !filter ? `mr-[50px]` : ""
-      }  h-[260px]  flex  gap-[10px] items-center sm:p-4  `}
+        index == 19 && !addRank && !filter ? `mr-[50px] sm:ml-[10px]` : ""
+      }  h-[260px] md:h-[220px]  flex  gap-[10px]  items-center sm:p-4  `}
     >
       <Link to={`${card.id}`}>
         <div className={addRank ? `flex ` : ``}>
@@ -196,8 +196,8 @@ function Template({
               className={`  ${
                 card.poster_path
                   ? ` object-contain transition-all duration-700 hover:scale-110  hover:rotate-6`
-                  : `h-[225px] object-fill`
-              } max-w-[150px]  rounded-lg cursor-pointer }`}
+                  : `h-[225px]  object-fill`
+              } max-w-[150px] md:max-w-[125px]  rounded-lg cursor-pointer }`}
               onDoubleClick={(e) => {
                 handleScroll(250, Number(index));
               }}

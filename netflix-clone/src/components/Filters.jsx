@@ -97,19 +97,20 @@ function Filters({ title, content }) {
 
   return (
     <>
-      <div className="w-full justify-between flex relative gap-[50px] top-[100px]">
-        
-        <h1 className="text-3xl font-semibold ml-[75px]">{title}</h1>
+      <div className="w-full sm:flex-col justify-between  flex relative gap-[50px] md:gap-[0px] top-[100px]">
+        <div className="flex gap-[25px]">
+        <h1 className="text-3xl font-semibold md:text-2xl ml-[75px] md:ml-[25px]  w-[150px]">{title}</h1>
 
         {currentGenre.name !== title ? (
-          <h2 className="relative left-[-275px] py-1.5 text-[18px] font-medium text-gray-400">
+          <h2 className="relative  sm:text-[14px] py-1.5 text-[18px]  font-medium text-gray-400">
             &gt;&nbsp;&nbsp;&nbsp;&nbsp;{currentGenre.name}
           </h2>) : ("")}
+          </div>
 
-        <div className="flex gap-[25px]">
+        <div className="flex sm:justify-between sm:mx-[24px] sm:mt-[24px]  gap-[25px] md:gap-[10px]">
           
-          <Menu as="div" className=" relative   inline-block text-left">
-            <MenuButton className=" flex w-full  text-[16px]  px-2 py-1 text-1xl  text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-[#6d6d6eb3]">
+          <Menu as="div" className=" relative text-left">
+            <MenuButton className=" flex   text-[16px] md:text-[14px] md:px-1.5 px-2 py-1 text-1xl  text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-[#6d6d6eb3]">
               {currentGenre.name}
               <img src={caret} className="my-1.5 ml-5 h-3 w-5 text-gray-400" />
             </MenuButton>
@@ -136,15 +137,15 @@ function Filters({ title, content }) {
 
           <Menu
             as="div"
-            className="mr-[150px] relative mb-[150px] overflow-y text-left">
-            <MenuButton className=" flex w-full  text-[16px]  px-2 py-1 text-1xl  text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-[#6d6d6eb3]">
+            className="mr-[150px]  relative mb-[150px] md:mr-[50px] overflow-y text-left">
+            <MenuButton className=" flex w-full  text-[16px] sm:text-[14px] md:px-1.5 px-2 py-1 text-1xl  text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-[#6d6d6eb3]">
               {currentLanguage.english_name}
               <img src={caret} className="my-1.5 ml-5 h-3 w-5 text-gray-400" />
             </MenuButton>
 
             <MenuItems
               transition
-              className="absolute overflow-y-auto  h-48 left-0 bg-black z-10 w-48 origin-top-right  shadow-lg ring-1 ring-inset ring-gray-300  transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
+              className="absolute overflow-y-auto   h-48 left-0 bg-black z-10 w-48 origin-top-right  shadow-lg ring-1 ring-inset ring-gray-300  transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
             >
               <div className="py-1">
                 {languages.map((language) => (
@@ -164,7 +165,7 @@ function Filters({ title, content }) {
         </div>
       </div>
 
-      {contentList.length > 0 ?   <div className="grid gap-y-[25px] gap-x-[25px] grid-cols-8 mx-[64px] my-[12px] lg:grid-cols-4 md:grid-cols-2 ">
+      {contentList.length > 0 ?   <div className="grid gap-[25px] gap-x-[25px] grid-cols-8 mx-[64px]  lg:mx-[24px] md:mx-[12px]  md:gap-x-[10px] md:gap-[10px] lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-3 sm:mx-[6px]  ">
  { contentList.map((value, index) => (
           <Template
             card={value}
@@ -176,6 +177,7 @@ function Filters({ title, content }) {
         ))}
         </div> : <NotFound title={`Find ${title} based on your interests.....`} className="text-gray-400  text-xl"></NotFound>
       }
+  
     </>
   );
 }

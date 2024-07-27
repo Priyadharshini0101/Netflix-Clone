@@ -14,6 +14,7 @@ import {
 const Header = () => {
   const [helmet, setHelmet] = useState("Netflix");
   const [menu, setMenu] = useState(false);
+  const [navMenu,setNavMenu] = useState(false)
   const navRef = useRef();
 
   useEffect(() => {
@@ -32,20 +33,29 @@ const Header = () => {
         <title>{helmet}</title>
         <meta name="description" content={``}></meta>
       </Helmet>
-      <div
-        className="bg w-full px-[50px] z-[1] bg  flex justify-between fixed text-sm background-header"
+      <nav
+        className="bg w-full px-[50px] sm:px-[25px]  z-50 xs:flex-col flex justify-between fixed text-sm background-header "
         ref={navRef}
+  
       >
-        <div className=" flex items-center gap-[50px] ">
+        
+        <div className=" flex items-center gap-[50px] sm:gap-[10px] xs:justify-between xs:mr-[25px]">
+         
           <img
             src={logo}
             alt="Netflix logo"
-            className="h-[25px] ml-[25px] my-[20px]"
+            className="h-[25px] ml-[25px] my-[20px] xs:mx-[0px]"
           ></img>
-          <ul className="flex gap-[20px]">
+  
+<button data-collapse-toggle="navbar-default" type="button" class="hidden  md:block items-center p-2 w-10 h-10 justify-center  " aria-controls="navbar-default" aria-expanded="false" onClick={() => setNavMenu((navMenu) => !navMenu)}>
+   <div className="flex gap-[5px]">  <a className="text-white text-[14px] ">Browse </a><img src={caret} className="w-[20px] h-[15px] my-[3.5px]"></img></div>
+    </button>
+    
+<div className={`${navMenu ? `md:absolute top-[100%] left-[20%] md:bg-black md:p-5 sm:p-2.5 md:text-center  md:border-t-gray-200 md:border-black md:border-[2.5px]` : `md:hidden`} `}>
+  <ul className={` flex  gap-[20px] md:flex-col`}>
             <Link to="/" >
               <li 
-                className={`cursor-pointer hover:text-[#b3b3b3] ${useLocation().pathname === '/' ? `text-white font-semibold` : ``}`}
+                className={`cursor-pointer hover:text-[#b3b3b3] ${useLocation().pathname === '/' ? `text-white font-semibold` : ``}   `}
                 onClick={() => setHelmet("Home - Netflix")}
               >
                 Home
@@ -53,7 +63,7 @@ const Header = () => {
             </Link>
             <Link to="/tvshows" >
               <li
-                className={`cursor-pointer hover:text-[#b3b3b3] ${useLocation().pathname === '/tvshows' ? `text-white font-semibold` : ``}`}
+                className={`block cursor-pointer hover:text-[#b3b3b3] ${useLocation().pathname === '/tvshows' ? `text-white font-semibold` : ``}`}
                 onClick={() => setHelmet("TV Shows - Netflix")}
               >
                 TV Shows
@@ -96,7 +106,9 @@ const Header = () => {
             </Link>
           </ul>
         </div>
-        <div className=" flex gap-[20px] items-center">
+        </div>
+
+        <div className=" flex gap-[20px] items-center xs:justify-between">
           <img src={search} alt="search icon" className="cursor-pointer"></img>
           <p>Children</p>
           <img
@@ -216,9 +228,17 @@ const Header = () => {
             </div>
           </div>
         </div>
-      </div>
+      
+
+      </nav>
+      
+
+
+
     </>
   );
 };
 
 export default Header;
+
+
