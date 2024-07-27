@@ -29,8 +29,8 @@ function Home() {
         <img src={heroCaption} alt="money heist caption" className='w-[90%] max-w-[480px] mb-[30px] md:mb-[15px] md:max-w-[320px] sm:max-w-[240px]'></img>
         <p alt="money heist description" className='max-w-[700px] md:max-w-[500px] text-1xl mb-[20px] md:mb-[10px] sm:text-[14px] xs:hidden '>When the national mint and a touring school group are held hostage by robbers, police believe that the thieves have no way out. Little do they know that the thieves have a bigger plan in store.</p>
         <div className='flex gap-[10px] mb-[50px] '>
-          <button className='rounded-lg px-[20px] py-[8px] sm:px-[10px] sm:py-[4px] sm:text-[14px] inline-flex items-center gap-[10px] sm:gap-[5px] text-1xl text-black  bg-white cursor-pointer hover:bg-[#ffffffbf]'><img src={play} alt="play" className='w-[25px] sm:w-[10px] p-0'></img>Play</button>
-          <button  className='rounded-lg px-[20px]  py-[8px] sm:px-[10px] sm:py-[4px] sm:text-[14px] inline-flex items-center gap-[10px] sm:gap-[5px] text-1xl text-white  bg-[#6d6d6eb3] cursor-pointer hover:bg-[#6d6d6e66] ' ><img src={info} alt="info" className='w-[25px] sm:w-[10px] p-0'></img>More Info</button>
+          <button className='rounded-md px-[20px] py-[8px] sm:px-[10px] sm:py-[4px] sm:text-[14px] inline-flex items-center gap-[10px] sm:gap-[5px] text-1xl text-black  bg-white cursor-pointer hover:bg-[#ffffffbf]'><img src={play} alt="play" className='w-[25px] sm:w-[10px] p-0'></img>Play</button>
+          <button  className='rounded-md px-[20px]  py-[8px] sm:px-[10px] sm:py-[4px] sm:text-[14px] inline-flex items-center gap-[10px] sm:gap-[5px] text-1xl text-white  bg-[#6d6d6eb3] cursor-pointer hover:bg-[#6d6d6e66] ' ><img src={info} alt="info" className='w-[25px] sm:w-[10px] p-0'></img>More Info</button>
         </div>
       </div>
    <div className=' relative overflow-x-auto ml-[50px] sm:text-[14px] sm:ml-[25px] mt-[10px] overflow-hidden '>
