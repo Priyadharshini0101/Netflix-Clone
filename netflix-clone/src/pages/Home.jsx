@@ -23,6 +23,7 @@ function Home() {
  
   return (
     <>
+    
     <div className='relative'>
       <img src={heroBanner} alt="money heist image" className='banner'></img>
       <div className='absolute w-full pl-[6%] top-[20%] md:top-[15%] sm:top-[5%]'>
