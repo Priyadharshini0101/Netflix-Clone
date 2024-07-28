@@ -91,7 +91,7 @@ function TitleCard({
               id={cardRef + "prev" + id}
               onClick={() => {
              handleScroll()}}
-              className={`btn-prev bg-[hsla(0, 0%, 8%, .7)] md:h-[190px] md:my-[5px]   rounded 
+              className={`btn-prev bg-[hsla(0, 0%, 8%, .7)] md:h-[190px] md:my-[15px]    rounded 
              hover:bg-[#6d6d6e66]
             `}
               onMouseOver={() => {
@@ -138,7 +138,7 @@ function TitleCard({
                 document.getElementById(cardRef + "next" + id).innerHTML = ``;
               }}
               onClick={() => handleScroll( "right")}
-              className={`btn-next bg-[hsla(0, 0%, 8%, .7)] md:h-[190px] md:my-[5px] hover:bg-[#6d6d6e66]
+              className={`btn-next bg-[hsla(0, 0%, 8%, .7)] md:h-[190px] md:my-[15px] hover:bg-[#6d6d6e66]
               onmouseover:bg-[#6d6d6e66] rounded
             
               `}
