@@ -19,19 +19,19 @@ function Footer() {
             <img src={youtube}></img>
           </a>
         </div>
-        <ul className="grid gap-y-[10px]  grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2  gap-x-[100px] mb-[30px] text-[13px] text-[#808080] xs:grid-cols-1">
-          <li>Audio Description</li>
-          <li>Help Center</li>
-          <li>Gift Cards</li>
-          <li>Media Centre</li>
-          <li>Investor Relations</li>
-          <li>Jobs</li>
-          <li>Terms of Use</li>
-          <li>Privacy</li>
-          <li>Legal Notices</li>
-          <li>Cookie Preferences</li>
-          <li>Corporate Information</li>
-          <li>Contact Us</li>
+        <ul className="grid gap-y-[10px] grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2  gap-x-[100px] mb-[30px] text-[13px] text-[#808080] xs:grid-cols-1">
+          <li className="hover:underline  ">Audio Description</li>
+          <li className="hover:underline  ">Help Center</li>
+          <li className="hover:underline  ">Gift Cards</li>
+          <li className="hover:underline  ">Media Centre</li>
+          <li className="hover:underline  ">Investor Relations</li>
+          <li className="hover:underline  ">Jobs</li>
+          <li className="hover:underline  ">Terms of Use</li>
+          <li className="hover:underline  ">Privacy</li>
+          <li  className="hover:underline  ">Legal Notices</li>
+          <li  className="hover:underline  ">Cookie Preferences</li>
+          <li  className="hover:underline  ">Corporate Information</li>
+          <li  className="hover:underline  ">Contact Us</li>
         </ul>
         <p className="text-[#808080] text-[11px]">&copy; 1997 - 2023 Netflix, Inc.</p>
       </div>

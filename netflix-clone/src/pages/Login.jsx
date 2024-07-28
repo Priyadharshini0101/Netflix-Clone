@@ -88,7 +88,7 @@ const navigate = useNavigate()
               onChange={(e) => setPassword(e.target.value)}
               value={password}
             ></input>
-            <button type="submit" onClick={user_auth} className="mt-[20px] sm:mt-[10px] xs:mt-[5px] cursor-pointer w-[100%] border-0 outline-0 p-[16px] bg-[#e50914] text-white rounded-lg text-[16px] ">
+            <button type="submit" onClick={user_auth} className="mt-[20px] sm:mt-[10px] xs:mt-[5px] cursor-pointer w-[100%] border-0 outline-0 p-[16px] sm:p-[14px] xs:p-[12px] bg-[#e50914] hover:bg-red-400 text-white rounded-lg text-[16px] ">
               {signState == "Sign In" ? "Sign Up" : "Sign In"}
             </button>
             <div className="flex items-cener justify-between text-[#b3b3b3] text-[13px]">
@@ -96,32 +96,36 @@ const navigate = useNavigate()
                 <input className="w-[18px] h-[18px] sm:w-[14px] xs:w-[12px] sm:h-[14px] xs:h-[12px]" type="checkbox"></input>
                 <label htmlFor="">Remember Me</label>
               </div>
-              <p>Need Help?</p>
+              <p className="cursor-pointer hover:text-gray-50">Need Help?</p>
             </div>
           </form>
           <div className="mt-[40px] sm:mt-[30px] xs:mt-[20px]  text-[#737373]">
             {signState  == "Sign In"? (
-              <p className="sm:text-[14px[ xs:text-[12px]">
-                New to Netflix?{" "}
+            
+              <p className="sm:text-[14px] xs:text-[12px]">
+                New to Netflix?{" "} 
                 <span
-                  className="ml-[6px] text-[#fff] font-semibold cursor-pointer"
+                  className="hover:text-[#737373] ml-[6px] text-[#fff] font-semibold cursor-pointer"
                   onClick={() =>{ setSignState("Sign Up")
                     console.log(signState)
                   }}
-                >
-                  Sign Up Now
+                > 
+               Sign Up
                 </span>
-              </p>
+                </p> 
+          
+               
+             
             ) : (
               <p className="sm:text-[14px] xs:text-[12px]">
                 Already have account?{" "}
                 <span
-                  className="ml-[6px] text-[#fff] font-semibold cursor-pointer"
+                  className="hover:text-[#737373] ml-[6px] text-[#fff] font-semibold cursor-pointer"
                   onClick={() => {setSignState("Sign In")
                     console.log(signState)
                   }}
                 >
-                  Sign In Now
+                  Sign In
                 </span>
               </p>
             )}{" "}

@@ -25,7 +25,7 @@ function Home() {
     <>
     <div className='relative'>
       <img src={heroBanner} alt="money heist image" className='banner'></img>
-      <div className='absolute w-full pl-[6%] top-[20%] md:top-[15%] sm:top-[5%]'>
+      <div className='absolute w-full pl-[6%] top-[20%] md:top-[15%] sm:top-[10%]'>
         <img src={heroCaption} alt="money heist caption" className='w-[90%] max-w-[480px] mb-[30px] md:mb-[15px] md:max-w-[320px] sm:max-w-[240px]'></img>
         <p alt="money heist description" className='max-w-[700px] md:max-w-[500px] text-1xl mb-[20px] md:mb-[10px] sm:text-[14px] xs:hidden '>When the national mint and a touring school group are held hostage by robbers, police believe that the thieves have no way out. Little do they know that the thieves have a bigger plan in store.</p>
         <div className='flex gap-[10px] mb-[50px] '>

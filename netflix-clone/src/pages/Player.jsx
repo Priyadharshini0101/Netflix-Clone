@@ -206,7 +206,7 @@ function Player() {
                       </button>
                     ) : (
                       <button
-                        className="w-full text-black bg-gray-200 p-2 text-1xl font-semibold hover:bg-gray-400"
+                        className="w-full text-black bg-white p-2 text-1xl font-semibold hover:bg-gray-200"
                         onClick={() => addWatchListHandler(details, content)}
                       >
                         Add to my watchlist
