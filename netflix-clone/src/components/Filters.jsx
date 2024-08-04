@@ -23,7 +23,7 @@ function Filters({ title, content }) {
       const allResults = [];
       for (let page = 1; page <= 4; page++) {
         const response = await fetch(
-          `${conf.apiUrl}discover/${content}?page=${page}&sort_by=popularity.desc&api_key=${conf.apiKey}&with_genres=${currentGenre.id}&with_original_language=${currentLanguage.iso_639_1}`
+          `https://api.themoviedb.org/3/discover/${content}?page=${page}&sort_by=popularity.desc&api_key=365fae6b1e2fabc371f203e61d7fdbc8&with_genres=${currentGenre.id}&with_original_language=${currentLanguage.iso_639_1}`
         );
 
         const data = await response.json();
@@ -41,7 +41,7 @@ function Filters({ title, content }) {
   const getGenres = async () => {
     try {
       const response = await fetch(
-        `${conf.apiUrl}genre/${content}/list?language=en-US&api_key=${conf.apiKey}`
+        `https://api.themoviedb.org/3/genre/${content}/list?language=en-US&api_key=365fae6b1e2fabc371f203e61d7fdbc8`
       );
 
       const data = await response.json();
@@ -54,7 +54,7 @@ function Filters({ title, content }) {
  const getLanguages = async () => {
     try {
       const response = await fetch(
-        `${conf.apiUrl}configuration/languages?api_key=${conf.apiKey}`
+        `https://api.themoviedb.org/3/configuration/languages?api_key=365fae6b1e2fabc371f203e61d7fdbc8`
       );
 
       const data = await response.json();

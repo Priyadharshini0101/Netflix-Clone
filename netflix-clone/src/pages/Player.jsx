@@ -22,7 +22,7 @@ function Player() {
   const getTeaser = async (content) => {
     try {
       const response = await fetch(
-        `${conf.apiUrl}${content}/${id}/videos?language=en-US&api_key=${conf.apiKey}`
+        `https://api.themoviedb.org/3/${content}/${id}/videos?language=en-US&api_key=365fae6b1e2fabc371f203e61d7fdbc8`
       );
 
       const data = await response.json();
@@ -39,7 +39,7 @@ function Player() {
         setIsTeaser(true);
       }
       const response1 = await fetch(
-        `${conf.apiUrl}${content}/${id}?language=en-US&api_key=${conf.apiKey}`
+        `https://api.themoviedb.org/3/${content}/${id}?language=en-US&api_key=365fae6b1e2fabc371f203e61d7fdbc8`
       );
 
       const data1 = await response1.json();
@@ -69,7 +69,7 @@ function Player() {
       if (data1 && data1.original_language) {
         try {
           const response = await fetch(
-            `${conf.apiUrl}configuration/languages?api_key=${conf.apiKey}`
+            `https://api.themoviedb.org/3/configuration/languages?api_key=365fae6b1e2fabc371f203e61d7fdbc8`
           );
 
           const data = await response.json();
