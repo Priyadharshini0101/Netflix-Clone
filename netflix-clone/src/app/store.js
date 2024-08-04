@@ -1,7 +1,7 @@
 import {configureStore} from '@reduxjs/toolkit'
-import watchListReducer from '../features/list/watchListSlice.js'
-import languageSlice from '../features/list/languageSlice.js'
-import genreSlice from '../features/list/genreSlice.js'
+import watchListReducer from './watchListSlice.js'
+import languageSlice from './languageSlice.js'
+import genreSlice from './genreSlice.js'
 
 export const store = configureStore({
     reducer:{

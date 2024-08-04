@@ -17,7 +17,8 @@ const router = createBrowserRouter(
 
       <Route path="/" element={<Layout></Layout>}>
         <Route path="" element={<Home></Home>}></Route>
-        <Route path="tvshows" element={<TVShows></TVShows>}></Route>
+        <Route path="tvshows" element={<TVShows></TVShows>}>
+      </Route>
         <Route path="movies" element={<Movies></Movies>} />
         <Route path="mylist" element={<MyList></MyList>} />
         <Route path="*" element={<NotFound title="Oops! We ran out of code"></NotFound>}></Route>
@@ -28,7 +29,6 @@ const router = createBrowserRouter(
           <Route path=":id" element={<Player></Player>}></Route>
         </Route>
       </Route>
- 
     </>
   )
 );

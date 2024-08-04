@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Filters, Template } from "../components";
 import { useDispatch } from "react-redux";
-import { addWatchList } from "../features/list/watchListSlice";
+import { addWatchList } from "../app/watchListSlice";
 
 function MyList() {
   const watchlists = JSON.parse(localStorage.getItem("list"));
