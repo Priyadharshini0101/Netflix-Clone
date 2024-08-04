@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { logo } from "../assets";
-import { addWatchList, removeWatchList } from "../features/list/watchListSlice";
+import { addWatchList, removeWatchList } from "../app/watchListSlice.js";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { NotFound } from "../pages/index.js";
+import conf from "../conf/conf.js";
 
 function Player() {
   const { content, id } = useParams();
@@ -21,7 +22,7 @@ function Player() {
   const getTeaser = async (content) => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/${content}/${id}/videos?language=en-US&api_key=365fae6b1e2fabc371f203e61d7fdbc8`
+        `${conf.apiUrl}${content}/${id}/videos?language=en-US&api_key=${conf.apiKey}`
       );
 
       const data = await response.json();
@@ -38,7 +39,7 @@ function Player() {
         setIsTeaser(true);
       }
       const response1 = await fetch(
-        `https://api.themoviedb.org/3/${content}/${id}?language=en-US&api_key=365fae6b1e2fabc371f203e61d7fdbc8`
+        `${conf.apiUrl}${content}/${id}?language=en-US&api_key=${conf.apiKey}`
       );
 
       const data1 = await response1.json();
@@ -68,7 +69,7 @@ function Player() {
       if (data1 && data1.original_language) {
         try {
           const response = await fetch(
-            `https://api.themoviedb.org/3/configuration/languages?api_key=365fae6b1e2fabc371f203e61d7fdbc8`
+            `${conf.apiUrl}configuration/languages?api_key=${conf.apiKey}`
           );
 
           const data = await response.json();
@@ -123,10 +124,11 @@ function Player() {
               <iframe
                 width="100%"
                 height="100%"
-                src={`https://www.youtube.com/embed/${teaser.key}`}
+                src={`https://www.youtube.com/embed/${teaser.key}?autoplay=1`}
                 title="trailer"
                 frameBorder="0"
                 allowFullScreen
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"    
               ></iframe>
               <div className="flex flex-col w-full  py-2.5 gap-[10px] ">
                 <div className="flex  justify-start w-full">

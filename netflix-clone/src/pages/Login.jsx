@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { logo } from "../assets/index.js";
 import { Helmet } from "react-helmet";
-import {login,signup} from '../firebase.js'
+import {login,signup,auth} from '../firebase.js'
 import { useNavigate} from "react-router-dom";
+import { onAuthStateChanged } from "firebase/auth";
 
 function Login() {
   const [signState, setSignState] = useState("Sign Up");
@@ -29,6 +30,21 @@ const navigate = useNavigate()
 
    setLoading(false)
   }
+
+
+   useEffect(()=>{
+     onAuthStateChanged(auth, async(user)=>{
+       if(user){
+         console.log("Logged In",location.pathname)
+         navigate('/')
+       }else{
+         console.log("Logged Out")
+         navigate('/login')
+       }
+     })
+   },[])
+  
+
 
  
   return (

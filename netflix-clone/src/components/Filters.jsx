@@ -3,9 +3,11 @@ import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { caret } from "../assets/index.js";
 import { Template } from "../components/index.js";
 import { useSelector, useDispatch } from "react-redux";
-import { addLanguage } from "../features/list/languageSlice";
-import { addMovieGenre, addTvGenre } from "../features/list/genreSlice.js";
+import { addLanguage } from "../app/languageSlice.js";
+import { addMovieGenre, addTvGenre } from "../app/genreSlice.js";
 import NotFound from "../pages/NotFound.jsx";
+import conf from "../conf/conf.js";
+
 
 function Filters({ title, content }) {
   const currentGenre = content === "tv"  ? useSelector((state) => state.genre.genres.tv): useSelector((state) => state.genre.genres.movie);
@@ -14,13 +16,14 @@ function Filters({ title, content }) {
   const [contentList, setContentList] = useState([]);
   const [languages, setLanguages] = useState([]);
   const dispatch = useDispatch();
+  console.log(conf.apiKey)
 
   const getContentList = async () => {
     try {
       const allResults = [];
       for (let page = 1; page <= 4; page++) {
         const response = await fetch(
-          `https://api.themoviedb.org/3/discover/${content}?page=${page}&sort_by=popularity.desc&api_key=365fae6b1e2fabc371f203e61d7fdbc8&with_genres=${currentGenre.id}&with_original_language=${currentLanguage.iso_639_1}`
+          `${conf.apiUrl}discover/${content}?page=${page}&sort_by=popularity.desc&api_key=${conf.apiKey}&with_genres=${currentGenre.id}&with_original_language=${currentLanguage.iso_639_1}`
         );
 
         const data = await response.json();
@@ -38,7 +41,7 @@ function Filters({ title, content }) {
   const getGenres = async () => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/genre/${content}/list?language=en-US&api_key=365fae6b1e2fabc371f203e61d7fdbc8`
+        `${conf.apiUrl}genre/${content}/list?language=en-US&api_key=${conf.apiKey}`
       );
 
       const data = await response.json();
@@ -51,7 +54,7 @@ function Filters({ title, content }) {
  const getLanguages = async () => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/configuration/languages?api_key=365fae6b1e2fabc371f203e61d7fdbc8`
+        `${conf.apiUrl}configuration/languages?api_key=${conf.apiKey}`
       );
 
       const data = await response.json();

@@ -3,7 +3,7 @@ import {heroBanner, heroCaption, play,info} from '../assets/index.js'
 import TitleCard from '../components/TitleCard.jsx'
 import Template from '../components/Template.jsx'
 import { useDispatch } from 'react-redux'
-import { addWatchList } from '../features/list/watchListSlice.js'
+import { addWatchList } from '../app/watchListSlice.js'
 
 function Home() {
   const watchlists = JSON.parse(localStorage.getItem("list"))
