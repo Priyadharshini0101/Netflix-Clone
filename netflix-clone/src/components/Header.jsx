@@ -48,7 +48,7 @@ const Header = () => {
             className="h-[25px] ml-[25px] my-[20px] xs:mx-[0px]"
           ></img>
   
-<button data-collapse-toggle="navbar-default" type="button" class="hidden  md:block items-center p-2 w-10 h-10 justify-center" aria-controls="navbar-default" aria-expanded="false" onClick={() => setNavMenu((navMenu) => !navMenu)}>
+<button data-collapse-toggle="navbar-default" type="button" className="hidden  md:block items-center p-2 w-10 h-10 justify-center" aria-controls="navbar-default" aria-expanded="false" onClick={() => setNavMenu((navMenu) => !navMenu)}>
    <div className="flex gap-[5px]">  <a className="text-white text-[14px]">Browse </a><img src={caret} className={`w-[20px] h-[15px] my-[3.5px] ${navMenu ? `transition ease-in-out rotate-180`:`transition ease-out`}`}></img></div>
     </button>
     
@@ -123,7 +123,7 @@ const Header = () => {
               alt=""
               className="w-[32px] h-[32px] cursor-pointer rounded"
             ></img>
-            <div class="relative inline-block text-left">
+            <div className="relative inline-block text-left">
               <div>
                 <img
                   src={caret}
@@ -146,7 +146,7 @@ const Header = () => {
                 role="menu"
                 aria-orientation="vertical"
                 aria-labelledby="menu-button"
-                tabindex="-1"
+                tabIndex="-1"
               >
                 <div
                   className={`py-1 ${menu ? `py-2.5 px-1 sm:px-0.5 sm:py-1.5` : `hidden`}`}
@@ -157,9 +157,9 @@ const Header = () => {
                     <img src={children} className="rounded-md"></img>{" "}
                     <a
                       href="#"
-                      class="text-[13px] hover:underline   p-[4%] text-sm text-white text-left"
+                      className="text-[13px] hover:underline   p-[4%] text-sm text-white text-left"
                       role="menuitem"
-                      tabindex="-1"
+                      tabIndex="-1"
                       id="menu-item-0"
                     >
                       Children
@@ -169,9 +169,9 @@ const Header = () => {
                     <img src={manageProfile}></img>{" "}
                     <a
                       href="#"
-                      class="text-[13px] hover:underline text-sm py-[4%] text-white text-left"
+                      className="text-[13px] hover:underline text-sm py-[4%] text-white text-left"
                       role="menuitem"
-                      tabindex="-1"
+                      tabIndex="-1"
                       id="menu-item-0"
                     >
                       Manage Profiles
@@ -181,9 +181,9 @@ const Header = () => {
                     <img src={transferProfile}></img>{" "}
                     <a
                       href="#"
-                      class="text-[13px] hover:underline  py-[4%] text-sm text-white text-left"
+                      className="text-[13px] hover:underline  py-[4%] text-sm text-white text-left"
                       role="menuitem"
-                      tabindex="-1"
+                      tabIndex="-1"
                       id="menu-item-1"
                     >
                       Transfer Profile
@@ -193,9 +193,9 @@ const Header = () => {
                     <img src={account}></img>{" "}
                     <a
                       href="#"
-                      class="text-[13px] hover:underline text-sm py-[4%] text-white text-left"
+                      className="text-[13px] hover:underline text-sm py-[4%] text-white text-left"
                       role="menuitem"
-                      tabindex="-1"
+                      tabIndex="-1"
                       id="menu-item-0"
                     >
                       Account
@@ -205,9 +205,9 @@ const Header = () => {
                     <img src={helpCentre}></img>{" "}
                     <a
                       href="#"
-                      class="text-[13px] hover:underline  py-[4%] text-sm text-white text-left"
+                      className="text-[13px] hover:underline  py-[4%] text-sm text-white text-left"
                       role="menuitem"
-                      tabindex="-1"
+                      tabIndex="-1"
                       id="menu-item-1"
                     >
                       Help Centre
@@ -217,9 +217,9 @@ const Header = () => {
 
                   <button
                     onClick={() => logout()}
-                    class="block w-full pt-[2%] hover:underline text-[13px] text-center text-sm text-white"
+                    className="block w-full pt-[2%] hover:underline text-[13px] text-center text-sm text-white"
                     role="menuitem"
-                    tabindex="-1"
+                    tabIndex="-1"
                     id="menu-item-3"
                   >
                     Sign out of Netflix

@@ -9,7 +9,6 @@ export const watchListSlice = createSlice({
     initialState,
     reducers:{
         addWatchList:(state,action)=>{
-            console.log(action.payload)
             const watchList = {
                 id:nanoid(),
                 movie:action.payload.details,

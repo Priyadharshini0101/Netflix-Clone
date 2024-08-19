@@ -6,7 +6,7 @@ import { addWatchList, removeWatchList } from "../app/watchListSlice.js";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { NotFound } from "../pages/index.js";
-import conf from "../conf/conf.js";
+
 
 function Player() {
   const { content, id } = useParams();
@@ -53,7 +53,7 @@ function Player() {
 
       if (data1 && data1.created_by !== undefined) {
         const creator = data1.created_by;
-        let name = "";
+        let name;
         creator.map((c, index) => {
           if (index < creator.length - 1) {
             name += c.name + " , ";
@@ -61,11 +61,9 @@ function Player() {
             name += c.name;
           }
         });
+        setCreators(name);
       }
 
-      setCreators(name);
-      console.log(data1);
-      console.log("yes");
       if (data1 && data1.original_language) {
         try {
           const response = await fetch(
@@ -73,7 +71,6 @@ function Player() {
           );
 
           const data = await response.json();
-          // console.log(data)
           const temp = data.filter(
             (d) => d.iso_639_1 === data1.original_language
           );
@@ -97,7 +94,6 @@ function Player() {
   useEffect(() => {
     window.scroll(0, 0);
     getTeaser(content);
-    console.log(language);
   }, []);
  
 
@@ -128,7 +124,7 @@ function Player() {
                 title="trailer"
                 frameBorder="0"
                 allowFullScreen
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"    
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               ></iframe>
               <div className="flex flex-col w-full  py-2.5 gap-[10px] ">
                 <div className="flex  justify-start w-full">
@@ -188,7 +184,7 @@ function Player() {
                     )
                   ) : details.status !== "Ended" ? (
                     <p className="text-[14px] text-gray-200 font-bold">
-                      It's official:&nbsp;another Season is coming
+                      It&apos; s official:&nbsp;another Season is coming
                     </p>
                   ) : (
                     ""

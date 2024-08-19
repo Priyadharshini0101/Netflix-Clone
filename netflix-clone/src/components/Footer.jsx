@@ -6,16 +6,16 @@ function Footer() {
     <div className="flex justify-center">
       <div className="max-w-[1000px]  mx-0 my-auto px-[30px] py-[4%]">
         <div className="flex  gap-[20px] mx-[10px] my-[10px]">
-          <a href="https://www.facebook.com/NetflixIN/" target="_blank">
+          <a href="https://www.facebook.com/NetflixIN/" target="_blank" rel="noreferrer">
             <img src={facebook} className="w-[30px] cursor-pointer "></img>
           </a>
-          <a href="https://www.instagram.com/Netflix_IN/" target="_blank">
+          <a href="https://www.instagram.com/Netflix_IN/" target="_blank" rel="noreferrer">
             <img src={instagram}></img>
           </a>
-          <a href="https://x.com/netflixindia" target="_blank">
+          <a href="https://x.com/netflixindia" target="_blank" rel="noreferrer">
             <img src={twitter}></img>
           </a>
-          <a href="https://www.youtube.com/channel/UCZSNzBgFub_WWil6TOTYwAg" target="_blank">
+          <a href="https://www.youtube.com/channel/UCZSNzBgFub_WWil6TOTYwAg" target="_blank" rel="noreferrer">
             <img src={youtube}></img>
           </a>
         </div>

@@ -1,7 +1,5 @@
-import React, { useEffect } from "react";
-import { Filters, Template } from "../components";
-import { useDispatch } from "react-redux";
-import { addWatchList } from "../app/watchListSlice";
+import React from "react";
+import { Template } from "../components";
 
 function MyList() {
   const watchlists = JSON.parse(localStorage.getItem("list"));

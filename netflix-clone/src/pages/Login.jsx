@@ -17,13 +17,10 @@ const navigate = useNavigate()
     event.preventDefault()
     setLoading(true)
     if(signState === "Sign Up"){
-      console.log("login")
       await login(email,password)
     
     
     }else{
-     
-      console.log("register")
       await signup(name,email,password)
      
     }
@@ -35,11 +32,9 @@ const navigate = useNavigate()
    useEffect(()=>{
      onAuthStateChanged(auth, async(user)=>{
        if(user){
-         console.log("Logged In",location.pathname)
          navigate('/')
        }else{
-         console.log("Logged Out")
-         navigate('/login')
+        navigate('/login')
        }
      })
    },[])
@@ -122,8 +117,8 @@ const navigate = useNavigate()
                 New to Netflix?{" "} 
                 <span
                   className="hover:text-[#737373] ml-[6px] text-[#fff] font-semibold cursor-pointer"
-                  onClick={() =>{ setSignState("Sign Up")
-                    console.log(signState)
+                  onClick={() =>{ 
+                    setSignState("Sign Up")
                   }}
                 > 
                Sign Up
@@ -137,8 +132,8 @@ const navigate = useNavigate()
                 Already have account?{" "}
                 <span
                   className="hover:text-[#737373] ml-[6px] text-[#fff] font-semibold cursor-pointer"
-                  onClick={() => {setSignState("Sign In")
-                    console.log(signState)
+                  onClick={() => {
+                    setSignState("Sign In")
                   }}
                 >
                   Sign In

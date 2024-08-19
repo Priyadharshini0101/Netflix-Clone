@@ -6,7 +6,6 @@ import "./index.css";
 import { Home, TVShows, Movies, NotFound, MyList, Login, Player} from "./pages/index.js";
 import { store } from "./app/store.js";
 import { Provider } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'
 

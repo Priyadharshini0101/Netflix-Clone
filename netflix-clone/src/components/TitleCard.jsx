@@ -1,5 +1,16 @@
 import React, { useEffect, useState, useRef } from "react";
 import Template from "./Template.jsx";
+import PropTypes from 'prop-types'
+
+TitleCard.propTypes = {
+  id:PropTypes.string,
+  title:PropTypes.string,
+  genre:PropTypes.string,
+  language:PropTypes.string,
+  content:PropTypes.string,
+  notIncludedGenre:PropTypes.string,
+  addRank:PropTypes.string,
+}
 
 function TitleCard({
   id,

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { caret } from "../assets/index.js";
 import { Template } from "../components/index.js";
@@ -7,7 +7,12 @@ import { addLanguage } from "../app/languageSlice.js";
 import { addMovieGenre, addTvGenre } from "../app/genreSlice.js";
 import NotFound from "../pages/NotFound.jsx";
 import conf from "../conf/conf.js";
+import PropTypes from  'prop-types'
 
+Filters.propTypes = {
+  title:PropTypes.string,
+  content:PropTypes.string,
+}
 
 function Filters({ title, content }) {
   const currentGenre = content === "tv"  ? useSelector((state) => state.genre.genres.tv): useSelector((state) => state.genre.genres.movie);
@@ -16,7 +21,6 @@ function Filters({ title, content }) {
   const [contentList, setContentList] = useState([]);
   const [languages, setLanguages] = useState([]);
   const dispatch = useDispatch();
-  console.log(conf.apiKey)
 
   const getContentList = async () => {
     try {
@@ -121,7 +125,7 @@ function Filters({ title, content }) {
               transition
               className="absolute  bg-black  left-0 z-10 w-48 origin-top-right  shadow-lg ring-1 ring-inset ring-gray-300  transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in">
               <div className="py-1">
-                {genres.map((genre, index) => (
+                {genres.map((genre) => (
                   <MenuItem key={genre.id}>
                     <a
                       href="#"
