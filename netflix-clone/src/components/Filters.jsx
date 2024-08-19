@@ -6,7 +6,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { addLanguage } from "../app/languageSlice.js";
 import { addMovieGenre, addTvGenre } from "../app/genreSlice.js";
 import NotFound from "../pages/NotFound.jsx";
-import conf from "../conf/conf.js";
 import PropTypes from  'prop-types'
 
 Filters.propTypes = {
